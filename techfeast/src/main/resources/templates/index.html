@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- IMPORTANT for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-Flair TechFeast</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 🔐 ADMIN LOGIN BUTTON */
+        .admin-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            background: #1e3a8a;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .admin-btn:hover {
+            background: #312e81;
+            transform: scale(1.05);
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .register-btn {
+            display: inline-block;
+            margin-bottom: 40px;
+            padding: 14px 36px;
+            font-size: 18px;
+            color: white;
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(34,197,94,0.6);
+            animation: pulse 2s infinite;
+        }
+
+        .register-btn:hover {
+            transform: scale(1.07);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .box {
+            width: 260px;
+            height: 220px;
+            background: linear-gradient(135deg, #312e81, #6366f1);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+            transition: 0.4s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-12px) scale(1.05);
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 15px rgba(34,197,94,0.6); }
+            50% { box-shadow: 0 0 30px rgba(34,197,94,0.9); }
+            100% { box-shadow: 0 0 15px rgba(34,197,94,0.6); }
+        }
+
+        /* ===================== */
+        /* DESKTOP SUPPORT TEXT */
+        /* ===================== */
+        .support-text {
+            position: fixed;
+            bottom: 12px;
+            right: 18px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 1);
+            text-align: middle;
+            transition: all 0.3s ease;
+        }
+
+        .support-text a {
+            color: rgba(30, 136, 229, 0.6);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .support-text:hover a {
+            color: #1e88e5;
+            text-decoration: underline;
+        }
+
+        /* ===================== */
+        /* MOBILE VIEW FIXES */
+        /* ===================== */
+        @media (max-width: 768px) {
+
+            body {
+                height: auto;
+                padding: 30px 0;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                line-height: 1.5;
+            }
+
+            h3 {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+
+            .register-btn {
+                font-size: 16px;
+                padding: 12px 30px;
+                margin-bottom: 30px;
+            }
+
+            .container {
+                flex-direction: column;
+                gap: 22px;
+                align-items: center;
+            }
+
+            .box {
+                width: 90%;
+                height: 180px;
+                font-size: 20px;
+            }
+
+            .icon {
+                font-size: 42px;
+            }
+
+            /* Move support text to center BELOW content */
+            .support-text {
+                position: static;
+                margin-top: 30px;
+                text-align: center;
+                font-size: 12.5px;
+            }
+
+            @media (max-width: 600px) {
+                .admin-btn {
+                    font-size: 12px;
+                    padding: 6px 12px;
+                    top: 15px;
+                    right: 15px;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="hero">
+    <h1>Welcome to the E-Flair TechFest 2k26</h1>
+    <h3>Organized by the Department of ECE and EEE</h3>
+
+    <a href="/api/registrations/form" class="register-btn">Register Now</a>
+    <a href="/admin/login" class="admin-btn">Admin Login</a>
+
+    <div class="container">
+        <a href="/technical" class="box">
+            <div class="icon">🧠</div>
+            Technical Events
+        </a>
+
+        <a href="/nontechnical" class="box">
+            <div class="icon">🎭</div>
+            Non-Technical Events
+        </a>
+    </div>
+
+    <div class="support-text">
+        <p><strong>Imagined &amp; built by Beda</strong></p>
+        <p>Any problem with this site? Give me a bell 🔔 ↲</p>
+        <p>
+            <a href="mailto:yourmail@example.com">230101150001@centurionuniv.edu.in</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

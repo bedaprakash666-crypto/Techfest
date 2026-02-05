@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin | All Registrations</title>
+    <meta name="viewport" content="width=1200">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 60px 0 50px;  /* top | left-right | bottom */
+            color: #38bdf8;
+            width: 100%;
+        }
+
+
+<!--        h1 {-->
+<!--            text-align: center;-->
+<!--            margin: 30px 0;-->
+<!--            color: #38bdf8;-->
+<!--        }-->
+
+        .container {
+            width: 95%;
+            margin: auto;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #020617;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: #1e293b;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            color: #38bdf8;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #1e293b;
+        }
+
+        tbody tr:hover {
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .cash {
+            background: #22c55e;
+            color: #022c22;
+        }
+
+        .online {
+            background: #facc15;
+            color: #422006;
+        }
+
+        a.link {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a.link:hover {
+            text-decoration: underline;
+        }
+
+        .home-box {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            padding: 8px 16px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 14px;
+            background: #dc2626;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            th, td {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+        }
+
+        /* MOBILE VIEW FIX */
+        @media (max-width: 768px) {
+
+            .home-box {
+                top: 12px;
+                left: 12px;
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+
+            .logout-btn {
+                top: 12px;
+                right: 12px;
+                padding: 6px 12px;
+                font-size: 13px;
+                position: fixed; /* ensures right alignment */
+            }
+
+            h1 {
+                margin-top: 70px; /* pushes heading below buttons */
+                text-align: center;
+                font-size: 22px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<a href="/" class="home-box">Home</a>
+<a href="/admin/logout" class="logout-btn">Logout</a>
+
+
+<h1>All Event Registrations</h1>
+
+<div class="container">
+    <form method="get" action="/admin/registrations" style="margin-bottom:20px;">
+
+        <select name="event">
+            <option value="">All Events</option>
+            <option>Project Expo</option>
+            <option>Poster Presentation</option>
+            <option>Robo Race</option>
+            <option>Quiz</option>
+            <option>Hackathon</option>
+            <option>Coding Competition</option>
+            <option>Proto Lab</option>
+            <option>Talent Pitch</option>
+            <option>AI Prompt Craft</option>
+            <option>Free Fire</option>
+            <option>BGMI</option>
+            <option>Rangoli</option>
+            <option>Treasure Hunt</option>
+            <option>Video Editing</option>
+            <option>Photo Editing</option>
+            <option>Painting</option>
+            <option>Chess</option>
+            <option>Tug of War</option>
+        </select>
+
+        &nbsp;&nbsp;
+
+        <select name="payment">
+            <option value="">All Payments</option>
+            <option value="CASH">Cash</option>
+            <option value="ONLINE">Online</option>
+        </select>
+
+        &nbsp;&nbsp;
+
+        <button type="submit">Filter</button>
+    </form>
+</div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>Dept</th>
+            <th>Year</th>
+            <th>Event</th>
+            <th>Payment</th>
+            <th>Screenshot</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="r : ${registrations}">
+            <td th:text="${r.id}"></td>
+            <td th:text="${r.studentName}"></td>
+            <td th:text="${r.rollNo}"></td>
+            <td th:text="${r.department}"></td>
+            <td th:text="${r.year}"></td>
+            <td th:text="${r.eventName}"></td>
+
+            <td>
+                <span th:if="${r.paymentMode == 'CASH'}"
+                      class="badge cash">CASH</span>
+
+                <span th:if="${r.paymentMode == 'ONLINE'}"
+                      class="badge online">ONLINE</span>
+            </td>
+
+            <td>
+                <a th:if="${r.paymentMode == 'ONLINE'}"
+                   th:href="${r.screenshotUrl}"
+                   target="_blank"
+                   class="link">
+                    View
+                </a>
+                <span th:if="${r.paymentMode == 'CASH'}">—</span>
+            </td>
+
+            <td th:text="${r.email}"></td>
+            <td th:text="${r.phone}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

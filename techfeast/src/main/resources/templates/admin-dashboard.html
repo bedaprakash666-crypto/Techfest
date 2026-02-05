@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  <style>
+      body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          background: linear-gradient(135deg, #0f172a, #1e293b);
+          color: white;
+      }
+
+      /* Header */
+      .header {
+          padding: 20px 40px;
+          font-size: 24px;
+          font-weight: bold;
+      }
+
+      /* Stats Grid */
+      .stats {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 25px;
+          padding: 30px 40px;
+      }
+
+      .card {
+          background: white;
+          color: #111827;
+          padding: 25px;
+          border-radius: 12px;
+          text-align: center;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+          animation: fadeUp 0.6s ease;
+      }
+
+      .card h2 {
+          margin: 0;
+          font-size: 34px;
+          color: #1e3a8a;
+      }
+
+      .card p {
+          margin-top: 8px;
+          font-weight: 600;
+      }
+
+      /* Buttons */
+      .actions {
+          padding: 20px 40px;
+      }
+
+      .btn {
+          display: inline-block;
+          margin-right: 15px;
+          padding: 12px 22px;
+          background: #2563eb;
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 600;
+      }
+
+      .logout {
+          background: #dc2626;
+      }
+
+      /* Animation */
+      @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(25px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+          .stats {
+              grid-template-columns: repeat(2, 1fr);
+          }
+      }
+
+      .export-box {
+          margin-top: 30px;
+          background: white;
+          padding: 20px;
+          border-radius: 12px;
+          width: 360px;
+      }
+
+      .export-box select {
+          width: 100%;
+          padding: 10px;
+          margin: 12px 0;
+      }
+      /* 📱 MOBILE DASHBOARD LAYOUT */
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Stat cards → 1 per row */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 0 18px;
+    }
+
+    .stat-card {
+        width: 100%;
+        padding: 26px 10px;
+        border-radius: 14px;
+    }
+
+    .stat-card h2 {
+        font-size: 32px;
+    }
+
+    /* Buttons → full width stack */
+    .admin-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 0 20px;
+        margin-top: 25px;
+    }
+
+    .admin-actions a,
+    .admin-actions button {
+        width: 100%;
+        text-align: center;
+        padding: 14px 0;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+
+    /* Export container */
+    .export-box {
+        margin: 30px 16px;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .export-box select {
+        width: 100%;
+        padding: 12px;
+        font-size: 15px;
+        margin-bottom: 14px;
+    }
+
+    .export-box button {
+        width: 100%;
+        padding: 14px 0;
+        font-size: 16px;
+    }
+    /* 📱 CLEAN MOBILE DASHBOARD LAYOUT */
+    @media (max-width: 600px) {
+
+        /* Header */
+        .header {
+            font-size: 22px;
+            text-align: center;
+            padding: 18px 10px;
+            margin-bottom: 10px;
+        }
+
+        /* === STAT CARDS GRID === */
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            padding: 0 16px;
+            margin: 10px 0 18px 0;
+        }
+
+        /* Smaller square cards */
+        .card {
+            aspect-ratio: 1 / 1;
+            padding: 14px 8px;
+            border-radius: 14px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+        }
+
+        .card h2 {
+            font-size: 26px;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* === ACTION BUTTONS === */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 0 16px;
+            margin: 10px 0 22px 0;
+        }
+
+        .actions .btn {
+            width: 100%;
+            padding: 14px 0;
+            font-size: 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        /* === EXPORT BOX MATCH BUTTON WIDTH === */
+        .export-box {
+            width: 92%;
+            margin: 24px auto;   /* ← centers horizontally */
+            padding: 18px;
+            border-radius: 16px;
+        }
+
+        .export-box h3 {
+            font-size: 17px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .export-box select {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+        }
+
+        .export-box button {
+            width: 100%;
+            padding: 14px 0;
+            font-size: 16px;
+            border-radius: 12px;
+        }
+    }
+
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  📊 Admin Dashboard
+</div>
+
+<div class="stats">
+
+  <div class="card">
+    <h2 th:text="${total}">0</h2>
+    <p>Total Registrations</p>
+  </div>
+
+  <div class="card">
+    <h2 th:text="${online}">0</h2>
+    <p>Online Payments</p>
+  </div>
+
+  <div class="card">
+    <h2 th:text="${cash}">0</h2>
+    <p>Cash Payments</p>
+  </div>
+
+  <div class="card">
+    <h2 th:text="${eventCount}">0</h2>
+    <p>Unique Events</p>
+  </div>
+
+</div>
+
+<div class="actions">
+  <a href="/admin/registrations" class="btn">View Registrations</a>
+  <a href="/admin/export/excel" class="btn">Export Excel</a>
+  <a href="/admin/logout" class="btn logout">Logout</a>
+
+
+  <!-- 📦 Export by Event -->
+  <div class="export-box">
+
+    <h3>Export by Event</h3>
+
+    <form action="/admin/export/excel" method="get">
+
+      <select name="event" required>
+        <option value="">Select Event</option>
+
+        <option th:each="e : ${events}"
+                th:value="${e}"
+                th:text="${e}">
+        </option>
+      </select>
+
+      <button type="submit" class="btn">
+        Export Excel
+      </button>
+
+    </form>
+
+  </div>
+
+
+</div>
+
+</body>
+</html>

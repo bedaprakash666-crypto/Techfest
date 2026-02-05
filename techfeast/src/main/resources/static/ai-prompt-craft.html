@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Prompt Craft | TechFeast</title>
+
+  <style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #0f172a, #020617);
+        min-height: 100vh;
+    }
+
+    /* MAIN WHITE CONTAINER */
+    .page-container {
+        max-width: 1150px;
+        margin: 100px auto 60px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        padding: 50px 50px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 0 50px rgba(0,0,0,0.4);
+    }
+
+    /* LEFT DETAILS CARD */
+    .details-card {
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.08);
+        animation: fadeInLeft 1s ease;
+        color: #1e293b;
+    }
+
+    .details-card h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #312e81;
+    }
+
+    .details-card p {
+        font-size: 17px;
+        line-height: 1.7;
+        color: #475569;
+        margin-bottom: 30px;
+    }
+
+    /* REGISTER BUTTON */
+    .register-btn {
+        display: inline-block;
+        padding: 14px 40px;
+        font-size: 18px;
+        background: linear-gradient(90deg, #ec4899, #8b5cf6);
+        color: white;
+        border-radius: 30px;
+        text-decoration: none;
+        animation: glowPulse 2.2s infinite;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .register-btn:hover {
+        transform: scale(1.07);
+        box-shadow: 0 0 25px rgba(236,72,153,0.9);
+    }
+
+    /* RIGHT POSTER SECTION */
+    .poster-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeInRight 1s ease;
+    }
+
+    .poster-box img {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 18px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    }
+
+    /* HOME BUTTON */
+    .home-box {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 8px 18px;
+        background: #2563eb;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInLeft {
+        from { opacity: 0; transform: translateX(-40px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+        from { opacity: 0; transform: translateX(40px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes glowPulse {
+        0% { box-shadow: 0 0 15px rgba(236,72,153,0.5); }
+        50% { box-shadow: 0 0 30px rgba(139,92,246,0.9); }
+        100% { box-shadow: 0 0 15px rgba(236,72,153,0.5); }
+    }
+
+    /* MOBILE VIEW */
+    @media (max-width: 768px) {
+        .page-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .poster-box {
+            margin-top: 30px;
+        }
+
+        .details-card h1 {
+            text-align: center;
+        }
+
+        .register-btn {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<a href="/" class="home-box">Home</a>
+
+<div class="page-container">
+
+  <!-- LEFT: EVENT DETAILS -->
+  <div class="details-card">
+    <h1>AI Prompt Craft</h1>
+
+    <p>
+      The AI Prompt Craft event at TechFest focuses on the creative and technical
+      skill of designing effective prompts for AI image generation. Participants
+      are given a theme or concept before the event and must write precise and
+      imaginative prompts to produce the best possible AI-generated images.
+      This event enhances creativity, clarity of thought, and understanding of
+      how Artificial Intelligence interprets human instructions.
+    </p>
+
+    <a href="/register?eventName=AI Prompt Craft" class="register-btn">
+      Register Now
+    </a>
+  </div>
+
+  <!-- RIGHT: POSTER -->
+  <div class="poster-box">
+    <img src="/images/aipromptcraft.png" alt="AI Prompt Craft Poster">
+  </div>
+
+</div>
+
+</body>
+</html>

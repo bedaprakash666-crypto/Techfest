@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Events</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #020617);
+      color: white;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 42px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #94a3b8;
+        margin-bottom: 40px;
+    }
+
+<!--    .events-container {-->
+<!--      width: 85%;-->
+<!--      margin: 50px auto;-->
+<!--      display: grid;-->
+<!--      grid-template-columns: repeat(3, 1fr);-->
+<!--      gap: 30px;-->
+<!--    }-->
+    .events-container {
+        width: 90%;
+        margin: 50px auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+
+    a {
+      text-decoration: none;
+    }
+
+    .event-card {
+      background: rgba(255, 255, 255, 0.08);
+      height: 120px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .event-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+    }
+
+    .register-container {
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    /* 🔥 REGISTER BUTTON */
+    .register-btn {
+      padding: 14px 36px;
+      font-size: 18px;
+      background: linear-gradient(90deg, #ec4899, #8b5cf6);
+      color: white;
+      border-radius: 30px;
+
+      /* CONSTANT GLOW */
+      animation: glowPulse 2.2s infinite ease-in-out;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+    }
+
+    .register-btn:hover {
+      transform: translateY(-4px) scale(1.08);
+      box-shadow:
+        0 0 20px rgba(236,72,153,0.9),
+        0 0 40px rgba(139,92,246,0.9);
+      background: linear-gradient(90deg, #f472b6, #a78bfa);
+    }
+
+    /* ✨ GLOW ANIMATION */
+    @keyframes glowPulse {
+      0% {
+        box-shadow:
+          0 0 8px rgba(236,72,153,0.5),
+          0 0 18px rgba(139,92,246,0.4);
+      }
+      50% {
+        box-shadow:
+          0 0 16px rgba(236,72,153,0.9),
+          0 0 36px rgba(139,92,246,0.9);
+      }
+      100% {
+        box-shadow:
+          0 0 8px rgba(236,72,153,0.5),
+          0 0 18px rgba(139,92,246,0.4);
+      }
+    }
+
+    .home-box {
+       position: absolute;
+       top: 20px;
+       left: 20px;
+       padding: 10px 18px;
+       background: linear-gradient(90deg, #ec4899, #8b5cf6);
+       color: white;
+       text-decoration: none;
+       border-radius: 30px;
+       font-size: 14px;
+    }
+
+    .home-box:hover {
+       transform: translateY(-2px);
+       box-shadow: 0 10px 24px rgba(37, 99, 235, 0.65);
+    }
+
+    /* MOBILE VIEW */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+        margin-top: 60px;
+      }
+
+      .events-container {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+      }
+
+      .event-card {
+        height: 90px;
+        font-size: 17px;
+      }
+
+      .register-btn {
+        width: 90%;
+        min-height: 54px;
+        font-size: 16px;
+      }
+
+      .home-box {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="/" class="home-box">Home</a>
+
+<h1>Technical Events</h1>
+<p class="subtitle">Innovate • Compete • Showcase Your Skills</p>
+
+<div class="events-container">
+  <a href="/project-expo.html" class="event-card">🧠 Project Expo</a>
+  <a href="/poster-presentation.html" class="event-card">📊 Poster Presentation</a>
+  <a href="/robo-race.html" class="event-card">🤖 Robo Race</a>
+  <a href="/quiz.html" class="event-card">❓ Quiz</a>
+  <a href="/hackathon.html" class="event-card">💻 Hackathon</a>
+  <a href="/coding-competition.html" class="event-card">⌨️ Coding Competition</a>
+  <a href="/proto-lab.html" class="event-card">🧪 Proto Lab</a>
+  <a href="/talent-pitch.html" class="event-card">🎤 Talent Pitch</a>
+  <a href="/ai-prompt-craft.html" class="event-card">🤖✨ AI Prompt Craft</a>
+</div>
+
+<div class="register-container">
+  <a href="/register?eventType=technical" class="register-btn">
+    Register for Technical Events
+  </a>
+</div>
+
+</body>
+</html>
