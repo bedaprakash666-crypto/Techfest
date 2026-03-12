@@ -14,5 +14,6 @@ public interface RegistrationRepository extends JpaRepository<Registration, Long
     List<Registration> findByPaymentMode(String paymentMode);
 
     List<Registration> findByEventNameAndPaymentMode(String eventName, String paymentMode);
+    List<Registration> findByRollNo(String rollNo);
 
 }

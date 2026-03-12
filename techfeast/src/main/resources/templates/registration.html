@@ -335,26 +335,62 @@ function resetEventSelection() {
 }
 
 function handleEventCheck() {
-    const checked = document.querySelectorAll(".eventCheck:checked");
 
-    if (checked.length > 2) {
-        alert("You can select only 2 events.");
+    const allChecked = document.querySelectorAll(".eventCheck:checked");
+    const techChecked = document.querySelectorAll(".techEvent:checked");
+    const nonTechChecked = document.querySelectorAll(".nonTechEvent:checked");
+
+    if (allChecked.length > 4) {
+        alert("You can select maximum 4 events.");
         event.target.checked = false;
         return;
     }
 
-    const values = Array.from(checked).map(c => c.value);
+    if (techChecked.length > 3) {
+        alert("Maximum 3 Technical events allowed.");
+        event.target.checked = false;
+        return;
+    }
+
+    if (nonTechChecked.length > 1) {
+        alert("Only 1 Non-Technical event allowed.");
+        event.target.checked = false;
+        return;
+    }
+
+    const values = Array.from(allChecked).map(e => e.value);
     document.getElementById("selectedEvents").value = values.join(",");
 }
 
 document.querySelector("form").addEventListener("submit", function (e) {
 
     if (registrationMode === "FUNDING") {
-        if (selected.length !== 2) {
-            alert("Please select exactly 2 events.");
+
+        const tech = document.querySelectorAll(".techEvent:checked").length;
+        const nonTech = document.querySelectorAll(".nonTechEvent:checked").length;
+        const total = tech + nonTech;
+
+        if (total === 0) {
+            alert("Please select at least 1 event.");
+            e.preventDefault();
+        }
+
+        if (total > 4) {
+            alert("Maximum 4 events allowed.");
+            e.preventDefault();
+        }
+
+        if (tech > 3) {
+            alert("Maximum 3 Technical events allowed.");
+            e.preventDefault();
+        }
+
+        if (nonTech > 1) {
+            alert("Only 1 Non-Technical event allowed.");
             e.preventDefault();
         }
     }
+
 });
 
 
@@ -406,7 +442,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
             style="width:100%;padding:12px;
                    border:none;border-radius:10px;
                    background:#dc2626;color:white;font-weight:600;">
-      Compulsory Funding + 2 Free Events
+      Compulsory Funding + Max 4 Free Events
     </button>
   </div>
 </div>
@@ -468,26 +504,110 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
     <!-- 🎯 TWO EVENT SELECTION (ECE / EEE FUNDING) -->
     <div id="multiEventBox" style="display:none; margin-top:15px;">
-      <label>Select your TWO free events</label>
 
-      <div id="eventCheckboxes"
-           style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+      <label>Select Events (Max 4)</label>
 
-        <div th:each="e : ${events}">
-          <label class="event-card">
-            <input type="checkbox"
-                   class="eventCheck"
-                   th:value="${e}"
-                   onchange="handleEventCheck()">
-            <span th:text="${e}"></span>
-          </label>
-        </div>
+      <h4 style="margin-top:10px;color:#312e81;">Technical Events (Max 3)</h4>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="Hackathon" onchange="handleEventCheck()">
+          <span>Hackathon</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="Project Expo" onchange="handleEventCheck()">
+          <span>Project Expo</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="Ideathon" onchange="handleEventCheck()">
+          <span>Ideathon</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="IoT / Smart Circuit Design Championship" onchange="handleEventCheck()">
+          <span>IoT / Smart Circuit Design</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="Coding Level 1.0" onchange="handleEventCheck()">
+          <span>Coding Level 1.0</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="Technical Poster Presentation" onchange="handleEventCheck()">
+          <span>Technical Poster</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="Tech Quiz" onchange="handleEventCheck()">
+          <span>Tech Quiz</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="J30M — Presentation Challenge" onchange="handleEventCheck()">
+          <span>J30M Challenge</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="Robo Race" onchange="handleEventCheck()">
+          <span>Robo Race</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck techEvent" value="Virtual Campus Drive" onchange="handleEventCheck()">
+          <span>Virtual Campus</span>
+        </label>
 
       </div>
+
+      <h4 style="margin-top:20px;color:#312e81;">Non-Technical Event (Max 1)</h4>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+
+<!--        <label class="event-card">-->
+<!--          <input type="checkbox" class="eventCheck nonTechEvent" value="Free Fire" onchange="handleEventCheck()">-->
+<!--          <span>Free Fire</span>-->
+<!--        </label>-->
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck nonTechEvent" value="Rangoli Competition" onchange="handleEventCheck()">
+          <span>Rangoli</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck nonTechEvent" value="Digital Painting Competition" onchange="handleEventCheck()">
+          <span>Digital Painting</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck nonTechEvent" value="Treasure Hunt" onchange="handleEventCheck()">
+          <span>Treasure Hunt</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck nonTechEvent" value="Reels Challenge" onchange="handleEventCheck()">
+          <span>Reels Challenge</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck nonTechEvent" value="Chess Championship" onchange="handleEventCheck()">
+          <span>Chess</span>
+        </label>
+
+        <label class="event-card">
+          <input type="checkbox" class="eventCheck nonTechEvent" value="Tug of War" onchange="handleEventCheck()">
+          <span>Tug of War</span>
+        </label>
+
+      </div>
+
     </div>
 
     <!-- Hidden input to send selected events -->
-    <input type="hidden" name="eventName" id="selectedEvents">
+    <input type="hidden" name="selectedEvents" id="selectedEvents">
 
 
     <label>Mode of Payment</label>

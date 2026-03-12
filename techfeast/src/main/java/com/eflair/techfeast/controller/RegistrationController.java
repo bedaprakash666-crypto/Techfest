@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import java.util.List;
 
@@ -55,41 +59,75 @@ public class RegistrationController {
     @PostMapping
     public String saveRegistration(
             @ModelAttribute Registration registration,
+            @RequestParam(value = "selectedEvents", required = false) String selectedEvents,
             @RequestParam(value = "paymentScreenshot", required = false) MultipartFile screenshot,
             Model model) {
 
-        // 🔹 If payment mode is ONLINE → upload screenshot
-        if ("online".equalsIgnoreCase(registration.getPaymentMode())) {
+        // PAYMENT
+        if ("ONLINE".equalsIgnoreCase(registration.getPaymentMode())) {
 
             if (screenshot == null || screenshot.isEmpty()) {
-                model.addAttribute("error", "Payment screenshot is required for online payment");
+                model.addAttribute("error", "Payment screenshot required");
                 return "registration";
             }
 
-            // Upload to Cloudinary
             String imageUrl = cloudinaryService.uploadImage(screenshot);
             registration.setScreenshotUrl(imageUrl);
 
         } else {
-            // 🔹 CASH payment
             registration.setScreenshotUrl("CASH");
         }
 
-        // Save registration
-        registrationRepository.save(registration);
+        String eventNames = (selectedEvents != null && !selectedEvents.isBlank())
+                ? selectedEvents
+                : registration.getEventName();
 
-        // 🔹 Redirect instead of returning directly (VERY IMPORTANT)
-        return "redirect:/api/registrations/success?id=" + registration.getId();
+        List<Long> savedIds = new ArrayList<>();
+
+        if (eventNames != null && !eventNames.isBlank()) {
+
+            String[] events = eventNames.split(",");
+
+            for (String event : events) {
+
+                if (event.trim().isEmpty()) continue;
+
+                Registration newReg = new Registration();
+
+                newReg.setStudentName(registration.getStudentName());
+                newReg.setRollNo(registration.getRollNo());
+                newReg.setDepartment(registration.getDepartment());
+                newReg.setYear(registration.getYear());
+                newReg.setPhone(registration.getPhone());
+                newReg.setEmail(registration.getEmail());
+                newReg.setPaymentMode(registration.getPaymentMode());
+                newReg.setScreenshotUrl(registration.getScreenshotUrl());
+                newReg.setEventName(event.trim());
+
+                Registration saved = registrationRepository.save(newReg);
+                savedIds.add(saved.getId());
+            }
+        }
+
+        String ids = savedIds.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
+
+        return "redirect:/api/registrations/success?ids=" + ids;
     }
-
     // ✅ SUCCESS PAGE
     @GetMapping("/success")
-    public String showSuccessPage(@RequestParam("id") Long id, Model model) {
+    public String showSuccessPage(@RequestParam("ids") String ids, Model model) {
 
-        Registration registration = registrationRepository.findById(id).orElse(null);
+        List<Long> idList = Arrays.stream(ids.split(","))
+                .map(Long::parseLong)
+                .toList();
 
-        model.addAttribute("registration", registration);
-        return "success";   // success.html
+        List<Registration> registrations = registrationRepository.findAllById(idList);
+
+        model.addAttribute("registrations", registrations);
+
+        return "success";
     }
 
 

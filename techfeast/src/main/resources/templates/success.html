@@ -210,10 +210,26 @@
 
   <!-- 🔥 PERSONALIZED MESSAGE -->
   <p>
-    Dear <span class="highlight" th:text="${registration.studentName}" style="font-weight: bold;">Student</span>,<br>
-    you have been successfully registered for the <br>
-    <span class="highlight" th:text="${registration.eventName}" style="font-weight: bold;">Event</span> event. <br>
+    Dear
+    <span class="highlight"
+          th:text="${registrations[0].studentName}"
+          style="font-weight: bold;">
+      Student
+    </span>,
     <br>
+    you have been successfully registered for the following events:
+  </p>
+
+  <!-- ✅ EVENT LIST -->
+  <ul style="margin-top:15px; text-align:left; display:inline-block;">
+    <li th:each="reg : ${registrations}"
+        th:text="${reg.eventName}"
+        style="margin:6px 0; font-weight:600;">
+      Event Name
+    </li>
+  </ul>
+
+  <p style="margin-top:15px;">
     Stay tuned for Further Info!
   </p>
 
