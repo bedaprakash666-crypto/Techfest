@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT / Smart Circuit Design Championship | TechFeast</title>
+
+  <style>
+
+:root{
+--primary-neon:#00f2fe;
+--secondary-neon:#4facfe;
+--accent-pink:#ec4899;
+--glass-bg:rgba(15,23,42,0.85);
+--card-border:rgba(255,255,255,0.1);
+}
+
+body{
+margin:0;
+font-family:'Inter','Segoe UI',sans-serif;
+background:radial-gradient(circle at top right,#1e1b4b,#020617),
+           radial-gradient(circle at bottom left,#312e81,#020617);
+background-attachment:fixed;
+color:#e2e8f0;
+min-height:100vh;
+overflow-x:hidden;
+}
+
+/* PARTICLES */
+
+.particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+z-index:-1;
+}
+
+.particles span{
+position:absolute;
+width:4px;
+height:4px;
+background:rgba(0,242,254,0.7);
+border-radius:50%;
+animation:floatParticles linear infinite;
+}
+
+@keyframes floatParticles{
+from{transform:translateY(100vh) scale(.5);opacity:0;}
+10%{opacity:1;}
+to{transform:translateY(-10vh) scale(1);opacity:0;}
+}
+
+/* HOME BUTTON */
+
+.home-box{
+position:fixed;
+top:20px;
+left:20px;
+padding:10px 20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border:1px solid var(--card-border);
+color:var(--primary-neon);
+text-decoration:none;
+border-radius:8px;
+font-size:14px;
+font-weight:600;
+z-index:1000;
+}
+.home-box:hover {
+background: var(--primary-neon);
+color: #020617;
+box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+}
+
+/* PAGE GRID */
+
+.page-container{
+max-width:1300px;
+margin:80px auto 40px;
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:25px;
+padding:20px;
+}
+
+/* LEFT CARD */
+
+.details-card{
+background:var(--glass-bg);
+backdrop-filter:blur(12px);
+border:1px solid var(--card-border);
+border-radius:24px;
+padding:40px;
+animation:fadeInLeft .8s ease;
+}
+
+/* SIDEBAR */
+
+.sidebar-sticky{
+position:sticky;
+top:20px;
+display:flex;
+flex-direction:column;
+gap:20px;
+animation:fadeInRight .8s ease;
+}
+
+h1{
+font-size:3rem;
+margin-top:0;
+background:linear-gradient(to right,#fff,var(--primary-neon));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* SECTIONS */
+
+.section{
+margin-top:25px;
+padding:20px;
+background:rgba(255,255,255,0.03);
+border-radius:12px;
+border-left:4px solid var(--secondary-neon);
+}
+
+.section h3{
+margin:0 0 10px;
+color:var(--primary-neon);
+text-transform:uppercase;
+font-size:1rem;
+}
+
+.section ul,.section p{
+line-height:1.7;
+color:#94a3b8;
+}
+
+.highlight{
+background:rgba(0,242,254,.1);
+border:1px dashed var(--primary-neon);
+padding:15px;
+border-radius:8px;
+color:#fff;
+}
+
+/* SIDEBAR CARD */
+
+.sidebar-card{
+background:var(--glass-bg);
+backdrop-filter:blur(12px);
+border:1px solid var(--card-border);
+border-radius:20px;
+padding:25px;
+}
+
+/* POSTER */
+
+.poster-box img{
+width:100%;
+border-radius:18px;
+border:1px solid var(--card-border);
+box-shadow:0 15px 30px rgba(0,0,0,.5);
+}
+
+/* REGISTER BUTTON */
+
+.register-btn{
+display:block;
+padding:18px;
+font-size:18px;
+font-weight:bold;
+text-transform:uppercase;
+background:linear-gradient(90deg,#8b5cf6,#ec4899);
+color:white;
+border-radius:12px;
+text-decoration:none;
+transition:0.4s;
+text-align:center;
+box-shadow:0 10px 20px rgba(236,72,153,0.3);
+margin-top:20px;
+margin-bottom:10px;
+}
+
+.register-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 30px rgba(139,92,246,0.6);
+}
+
+/* CONTACT LIST */
+
+.contact-list{
+list-style:none;
+padding:0;
+}
+
+.contact-list li{
+margin-bottom:8px;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeInLeft{
+from{opacity:0;transform:translateX(-30px);}
+to{opacity:1;transform:translateX(0);}
+}
+
+@keyframes fadeInRight{
+from{opacity:0;transform:translateX(30px);}
+to{opacity:1;transform:translateX(0);}
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+.page-container{
+grid-template-columns:1fr;
+margin:70px 0;
+padding:0 12px;
+gap:16px;
+}
+
+.details-card{
+padding:22px 18px;
+}
+
+.sidebar-sticky{
+position:static;
+}
+
+.poster-box{
+order:-1;
+}
+
+h1{
+font-size:2rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="particles">
+  <span style="left:10%;animation-duration:18s;"></span>
+  <span style="left:20%;animation-duration:22s;"></span>
+  <span style="left:30%;animation-duration:15s;"></span>
+  <span style="left:40%;animation-duration:20s;"></span>
+  <span style="left:50%;animation-duration:17s;"></span>
+  <span style="left:60%;animation-duration:25s;"></span>
+  <span style="left:70%;animation-duration:19s;"></span>
+  <span style="left:80%;animation-duration:23s;"></span>
+  <span style="left:90%;animation-duration:21s;"></span>
+</div>
+
+<a href="/" class="home-box">← Back to Home</a>
+
+<div class="page-container">
+
+  <div class="details-card">
+
+    <h1>IoT / Smart Circuit Design Championship</h1>
+
+    <div class="section">
+      <h3>About the Event</h3>
+      <p>
+        The IoT / Smart Circuit Design Championship challenges participants to design and
+        implement intelligent electronic systems capable of solving real-world problems.
+        This event focuses on circuit design, embedded systems, sensor integration,
+        automation, and IoT-based communication. Participants must demonstrate strong
+        understanding of hardware architecture, signal processing, and system-level design.
+        This is not theory — your circuit must work.
+      </p>
+    </div>
+
+    <div class="section">
+      <h3>Rules</h3>
+      <ul>
+        <li>All hardware must be arranged by participants.</li>
+        <li>Short-circuiting or unsafe wiring will lead to disqualification.</li>
+        <li>Projects must be developed by participants only.</li>
+        <li>Judges’ decision will be final.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Categories</h3>
+      <ul>
+        <li>IoT-Based Automation Systems</li>
+        <li>Smart Home / Smart City Solutions</li>
+        <li>Embedded Systems & Microcontroller Projects</li>
+        <li>Sensor-Based Monitoring Systems</li>
+        <li>Industrial Automation Circuits</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Team Specifications</h3>
+      <ul>
+        <li>Each team can have a maximum of 3 members.</li>
+        <li>Individual participation is allowed.</li>
+        <li>Participants must carry valid college identity cards.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Student Coordinators</h3>
+      <ul class="contact-list">
+        <li><strong>Koushik Choudary</strong> (9178219883)</li>
+        <li><strong>S. Yogindra</strong></li>
+        <li><strong>P. Santosh</strong></li>
+        <li><strong>P. Deepthi</strong></li>
+        <li><strong>G. Chandu</strong></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="sidebar-sticky">
+
+    <div class="poster-box">
+      <img src="/images/iot-circuit.png" alt="IoT Circuit Poster">
+    </div>
+
+    <div class="sidebar-card">
+
+      <div class="section" style="margin-top:0;">
+        <h3>Event Timing & Fee</h3>
+        <div class="highlight">
+          📅 12–13 March 2026<br>
+          💰 Fee: <strong>₹100 per Team Member</strong>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Prize</h3>
+        <div class="highlight" style="border-color:#fbbf24;">
+          🏆 <strong>1st Prize — Up to ₹5,000 + Certificate</strong>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Faculty Coordinators</h3>
+        <ul class="contact-list">
+          <li><strong>Dr. D.S. Sabat</strong></li>
+          <li><strong>Dr. Vikas Rathore</strong></li>
+          <li><strong>Dr. Abinash Rath</strong></li>
+        </ul>
+      </div>
+
+      <a href="/register?eventName=IoT / Smart Circuit Design Championship" class="register-btn">
+        Secure your spot
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
