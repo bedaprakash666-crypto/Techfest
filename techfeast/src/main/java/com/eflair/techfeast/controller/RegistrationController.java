@@ -26,23 +26,23 @@ public class RegistrationController {
     public String showRegistrationForm(Model model) {
 
         List<String> events = List.of(
-                "Project Expo",
-                "Poster Presentation",
-                "Robo Race",
-                "Quiz",
-                "Talent Pitch",
                 "Hackathon",
-                "Coding Competition",
-                "Proto Lab",
-                "AI Prompt Craft",
+                "Project Expo",
+                "Ideathon",
+                "IoT / Smart Circuit Design Championship",
+                "Coding Level 1.0",
+                "Technical Poster Presentation",
+                "Tech Quiz",
+                "J30M — Presentation Challenge",
+                "Robo Race",
+                "Virtual Campus Drive",
+                "Hardware Redesign",
                 "Free Fire",
-                "BGMI",
-                "Rangoli",
+                "Rangoli Competition",
+                "Digital Painting Competition",
                 "Treasure Hunt",
-                "Video Editing",
-                "Photo Editing",
-                "Painting",
-                "Chess",
+                "Reels Challenge",
+                "Chess Championship",
                 "Tug of War"
 
         );
