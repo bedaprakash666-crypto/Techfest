@@ -91,6 +91,7 @@ public class RegistrationPageController {
             registration.setEventName(eventNames);
         }
 
+
         registrationRepository.save(registration);
         model.addAttribute("registration", registration);
         return "success";

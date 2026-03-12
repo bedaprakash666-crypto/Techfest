@@ -40,6 +40,10 @@ public class Registration {
 
     private String paymentMode;
 
+    private String transactionId;
+    private String cashReceiver;
+    private String receiverPhone;
+
     // -------- Constructors --------
     public Registration() {
     }
@@ -131,5 +135,29 @@ public class Registration {
 
     public void setPaymentMode(String paymentMode) {
         this.paymentMode = paymentMode;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public String getCashReceiver() {
+        return cashReceiver;
+    }
+
+    public void setCashReceiver(String cashReceiver) {
+        this.cashReceiver = cashReceiver;
+    }
+
+    public String getReceiverPhone() {
+        return receiverPhone;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone;
     }
 }

@@ -216,10 +216,14 @@
             <th>Dept</th>
             <th>Year</th>
             <th>Event</th>
+            <th>Cash Receiver</th>
+            <th>Receiver Phone</th>
             <th>Payment</th>
+            <th>Transaction Id</th>
             <th>Screenshot</th>
             <th>Email</th>
             <th>Phone</th>
+
         </tr>
         </thead>
 
@@ -231,6 +235,19 @@
             <td th:text="${r.department}"></td>
             <td th:text="${r.year}"></td>
             <td th:text="${r.eventName}"></td>
+            <!-- ✅ Cash Receiver -->
+            <td>
+        <span th:if="${r.paymentMode == 'CASH'}"
+              th:text="${r.cashReceiver}"></span>
+                <span th:if="${r.paymentMode == 'ONLINE'}">—</span>
+            </td>
+
+            <!-- ✅ Receiver Phone -->
+            <td>
+        <span th:if="${r.paymentMode == 'CASH'}"
+              th:text="${r.receiverPhone}"></span>
+                <span th:if="${r.paymentMode == 'ONLINE'}">—</span>
+            </td>
 
             <td>
                 <span th:if="${r.paymentMode == 'CASH'}"
@@ -239,6 +256,7 @@
                 <span th:if="${r.paymentMode == 'ONLINE'}"
                       class="badge online">ONLINE</span>
             </td>
+            <td th:text="${r.transactionId}"></td>
 
             <td>
                 <a th:if="${r.paymentMode == 'ONLINE'}"
@@ -252,6 +270,8 @@
 
             <td th:text="${r.email}"></td>
             <td th:text="${r.phone}"></td>
+
+
         </tr>
         </tbody>
     </table>

@@ -27,7 +27,7 @@ public class RegistrationController {
 
     // ✅ STEP 1: LOAD REGISTRATION PAGE (GET)
     @GetMapping("/form")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm(@RequestParam(value = "event", required = false) String event,Model model) {
 
         List<String> events = List.of(
                 "Hackathon",
@@ -52,6 +52,8 @@ public class RegistrationController {
         );
 
         model.addAttribute("events", events);
+        model.addAttribute("selectedEvent", event);
+
         return "registration";
     }
 
@@ -100,9 +102,14 @@ public class RegistrationController {
                 newReg.setYear(registration.getYear());
                 newReg.setPhone(registration.getPhone());
                 newReg.setEmail(registration.getEmail());
+                newReg.setTransactionId(registration.getTransactionId());
                 newReg.setPaymentMode(registration.getPaymentMode());
                 newReg.setScreenshotUrl(registration.getScreenshotUrl());
+                newReg.setCashReceiver(registration.getCashReceiver());
+                newReg.setReceiverPhone(registration.getReceiverPhone());
                 newReg.setEventName(event.trim());
+
+                registration.setTransactionId("CASH");
 
                 Registration saved = registrationRepository.save(newReg);
                 savedIds.add(saved.getId());

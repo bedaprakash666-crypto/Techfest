@@ -146,73 +146,76 @@ button:hover {
   .container { width: 85%; }
 }
 
+<!--/* 🎨 EVENT CARD STYLE */-->
+<!--.event-card {-->
+<!--  display: block;-->
+<!--  padding: 12px;-->
+<!--  border-radius: 10px;-->
+<!--  border: 2px solid #cbd5e1;-->
+<!--  cursor: pointer;-->
+<!--  font-weight: 600;-->
+<!--  align-items:center;-->
+<!--  justify-content:center;-->
+<!--  text-align:center;-->
+<!--  transition: all 0.25s ease;-->
+<!--}-->
+
+<!--.event-card input {-->
+<!--  display: none;-->
+<!--}-->
+
+<!--.event-card:hover {-->
+<!--  border-color: #6366f1;-->
+<!--}-->
+
+<!--.event-card input:checked + span {-->
+<!--  color: white;-->
+<!--}-->
+
+<!--.event-card input:checked ~ span,-->
+<!--.event-card input:checked {-->
+<!--  background: linear-gradient(90deg,#6366f1,#312e81);-->
+<!--}-->
+
+<!--.event-card input:checked + span {-->
+<!--  display:block;-->
+<!--  padding:8px;-->
+<!--  border-radius:8px;-->
+<!--}-->
 /* 🎨 EVENT CARD STYLE */
+
 .event-card {
-  display: block;
-  padding: 12px;
-  border-radius: 10px;
-  border: 2px solid #cbd5e1;
-  cursor: pointer;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.25s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  padding:12px;
+  border-radius:10px;
+  border:2px solid #cbd5e1;
+  cursor:pointer;
+  font-weight:600;
+
+  transition:all 0.25s ease;
 }
 
-.event-card input {
-  display: none;
+.event-card input{
+  display:none;
 }
 
-.event-card:hover {
-  border-color: #6366f1;
+.event-card:hover{
+  border-color:#6366f1;
 }
 
-.event-card input:checked + span {
-  color: white;
-}
+/* SELECTED CARD */
 
-.event-card input:checked ~ span,
-.event-card input:checked {
-  background: linear-gradient(90deg,#6366f1,#312e81);
-}
-
-.event-card input:checked + span {
+.event-card input:checked + span{
   display:block;
   padding:8px;
   border-radius:8px;
-}
-/* 🎨 EVENT CARD STYLE */
-.event-card {
-    display: block;
-    padding: 12px;
-    border-radius: 10px;
-    border: 2px solid #cbd5e1;
-    cursor: pointer;
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.25s ease;
-}
-
-.event-card input {
-    display: none;
-}
-
-.event-card:hover {
-    border-color: #6366f1;
-}
-
-.event-card input:checked + span {
-    color: white;
-}
-
-.event-card input:checked ~ span,
-.event-card input:checked {
-    background: linear-gradient(90deg,#6366f1,#312e81);
-}
-
-.event-card input:checked + span {
-    display:block;
-    padding:8px;
-    border-radius:8px;
+  color:white;
+  background:linear-gradient(90deg,#6366f1,#312e81);
 }
 </style>
 
@@ -227,12 +230,18 @@ function showPaymentInfo() {
     const cashInfo = document.getElementById("cash-info");
     const onlineInfo = document.getElementById("online-info");
     const screenshotInput = document.getElementById("paymentScreenshot");
+    const txnInput = document.getElementById("transactionId");
 
     cashInfo.style.display = cash ? "block" : "none";
     onlineInfo.style.display = online ? "block" : "none";
 
-    // Screenshot required only for online payment
+        // ONLINE requirements
     screenshotInput.required = online;
+    txnInput.required = online;
+
+    // CASH requirements
+    cashReceiver.required = cash;
+    receiverPhone.required = cash;
 }
 
 /* ===============================
@@ -249,6 +258,15 @@ window.addEventListener("DOMContentLoaded", function () {
         submitBtn.innerText = "Please wait...";
         loadingText.style.display = "block";
     });
+
+        // ✅ Only allow numbers for cash receiver phone
+    const receiverPhone = document.getElementById("receiverPhone");
+
+    if (receiverPhone) {
+        receiverPhone.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, '');
+        });
+    }
 
 });
 
@@ -286,6 +304,14 @@ function hideRollHint() {
 let registrationMode = "NORMAL";
 
 function checkDepartment() {
+
+    const preSelectedEvent = document.getElementById("eventPreSelected").value;
+
+    // If user came from event page → skip funding popup
+    if (preSelectedEvent && preSelectedEvent !== "") {
+        return;
+    }
+
     const dept = document.getElementById("department")
         .value.trim().toUpperCase();
 
@@ -393,6 +419,20 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
 });
 
+window.addEventListener("DOMContentLoaded", function () {
+
+    const preSelectedEvent = document.getElementById("eventPreSelected").value;
+
+    if (preSelectedEvent && preSelectedEvent !== "") {
+
+        // hide event selector completely
+        document.getElementById("eventSelect").disabled = true;
+
+        // hide popup logic
+        registrationMode = "NORMAL";
+    }
+});
+
 
 
 </script>
@@ -452,6 +492,8 @@ document.querySelector("form").addEventListener("submit", function (e) {
   <h2>Event Registration</h2>
 
   <form th:action="@{/api/registrations}" method="post" enctype="multipart/form-data">
+    <input type="hidden" id="eventPreSelected"
+           th:value="${selectedEvent}">
 
     <label>Student Name</label>
     <input type="text" name="studentName" required>
@@ -511,10 +553,10 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
 
-        <label class="event-card">
-          <input type="checkbox" class="eventCheck techEvent" value="Hackathon" onchange="handleEventCheck()">
-          <span>Hackathon</span>
-        </label>
+<!--        <label class="event-card">-->
+<!--          <input type="checkbox" class="eventCheck techEvent" value="Hackathon" onchange="handleEventCheck()">-->
+<!--          <span>Hackathon</span>-->
+<!--        </label>-->
 
         <label class="event-card">
           <input type="checkbox" class="eventCheck techEvent" value="Project Expo" onchange="handleEventCheck()">
@@ -528,17 +570,12 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
         <label class="event-card">
           <input type="checkbox" class="eventCheck techEvent" value="IoT / Smart Circuit Design Championship" onchange="handleEventCheck()">
-          <span>IoT / Smart Circuit Design</span>
+          <span>IoT / Smart Circuit Design Championship</span>
         </label>
 
         <label class="event-card">
           <input type="checkbox" class="eventCheck techEvent" value="Coding Level 1.0" onchange="handleEventCheck()">
           <span>Coding Level 1.0</span>
-        </label>
-
-        <label class="event-card">
-          <input type="checkbox" class="eventCheck techEvent" value="Technical Poster Presentation" onchange="handleEventCheck()">
-          <span>Technical Poster</span>
         </label>
 
         <label class="event-card">
@@ -548,8 +585,18 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
         <label class="event-card">
           <input type="checkbox" class="eventCheck techEvent" value="J30M — Presentation Challenge" onchange="handleEventCheck()">
-          <span>J30M Challenge</span>
+          <span>J30M Presentation Challenge</span>
         </label>
+
+          <label class="event-card">
+              <input type="checkbox" class="eventCheck techEvent" value="Mind Maze" onchange="handleEventCheck()">
+              <span>Mind Maze</span>
+          </label>
+
+          <label class="event-card">
+              <input type="checkbox" class="eventCheck techEvent" value="Hardware Redesign" onchange="handleEventCheck()">
+              <span>Hardware Redesign</span>
+          </label>
 
         <label class="event-card">
           <input type="checkbox" class="eventCheck techEvent" value="Robo Race" onchange="handleEventCheck()">
@@ -558,7 +605,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
         <label class="event-card">
           <input type="checkbox" class="eventCheck techEvent" value="Virtual Campus Drive" onchange="handleEventCheck()">
-          <span>Virtual Campus</span>
+          <span>Virtual Campus Drive</span>
         </label>
 
       </div>
@@ -567,19 +614,14 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
 
-<!--        <label class="event-card">-->
-<!--          <input type="checkbox" class="eventCheck nonTechEvent" value="Free Fire" onchange="handleEventCheck()">-->
-<!--          <span>Free Fire</span>-->
-<!--        </label>-->
-
         <label class="event-card">
           <input type="checkbox" class="eventCheck nonTechEvent" value="Rangoli Competition" onchange="handleEventCheck()">
-          <span>Rangoli</span>
+          <span>Rangoli Competition</span>
         </label>
 
         <label class="event-card">
           <input type="checkbox" class="eventCheck nonTechEvent" value="Digital Painting Competition" onchange="handleEventCheck()">
-          <span>Digital Painting</span>
+          <span>Digital Painting Competition</span>
         </label>
 
         <label class="event-card">
@@ -594,7 +636,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
         <label class="event-card">
           <input type="checkbox" class="eventCheck nonTechEvent" value="Chess Championship" onchange="handleEventCheck()">
-          <span>Chess</span>
+          <span>Chess Championship</span>
         </label>
 
         <label class="event-card">
@@ -619,10 +661,24 @@ document.querySelector("form").addEventListener("submit", function (e) {
       <label for="online" style="display:inline;">Online</label>
     </div>
 
-    <div id="cash-info" class="payment-info">
-      <strong>Cash Payment Selected</strong>
-      <p>Please pay the registration fee at the help desk.</p>
-    </div>
+      <div id="cash-info" class="payment-info">
+          <strong>Cash Payment Selected</strong>
+          <p>Please pay the registration fee at the help desk.</p>
+
+          <label>Cash Receiver</label>
+          <input type="text"
+                 id="cashReceiver"
+                 name="cashReceiver"
+                 placeholder="Enter receiver name">
+
+          <label>Receiver Phone Number</label>
+          <input type="tel"
+                 id="receiverPhone"
+                 name="receiverPhone"
+                 placeholder="Enter phone number"
+                 maxlength="10"
+                 pattern="[0-9]{10}">
+      </div>
 
     <div id="online-info" class="payment-info">
       <div class="qr-box">
@@ -632,6 +688,12 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
       <label>Upload Payment Screenshot</label>
       <input type="file" id="paymentScreenshot" name="paymentScreenshot">
+
+      <label>Transaction ID</label>
+      <input type="text"
+             id="transactionId"
+             name="transactionId"
+             placeholder="Enter UPI / Payment Transaction ID">
     </div>
 
     <button type="submit" id="submitBtn">Register</button>
