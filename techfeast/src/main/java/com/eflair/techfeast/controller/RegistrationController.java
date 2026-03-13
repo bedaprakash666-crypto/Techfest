@@ -80,6 +80,9 @@ public class RegistrationController {
             registration.setScreenshotUrl("CASH");
         }
 
+        // ✅ Preserve original transaction ID
+        String originalTransactionId = registration.getTransactionId();
+
         String eventNames = (selectedEvents != null && !selectedEvents.isBlank())
                 ? selectedEvents
                 : registration.getEventName();
@@ -102,7 +105,9 @@ public class RegistrationController {
                 newReg.setYear(registration.getYear());
                 newReg.setPhone(registration.getPhone());
                 newReg.setEmail(registration.getEmail());
-                newReg.setTransactionId(registration.getTransactionId());
+//                newReg.setTransactionId(registration.getTransactionId());
+                // ✅ Use preserved transaction ID
+                newReg.setTransactionId(originalTransactionId);
                 newReg.setPaymentMode(registration.getPaymentMode());
                 newReg.setScreenshotUrl(registration.getScreenshotUrl());
                 newReg.setCashReceiver(registration.getCashReceiver());
