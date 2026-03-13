@@ -3,202 +3,364 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Fire / BGMI | TechFeast</title>
+  <title>Gaming Arena — FreeFire / BGMI | TechFeast</title>
 
   <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #0f172a, #020617);
-        min-height: 100vh;
-    }
+:root {
+  --primary-neon: #00f2fe;
+  --secondary-neon: #4facfe;
+  --accent-pink: #ec4899;
+  --glass-bg: rgba(15, 23, 42, 0.85);
+  --card-border: rgba(255, 255, 255, 0.1);
+}
 
-    /* MAIN WHITE CONTAINER */
-    .page-container {
-        max-width: 1150px;
-        margin: 100px auto 60px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        padding: 50px 50px;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 0 50px rgba(0,0,0,0.4);
-    }
+body{
+  margin:0;
+  font-family:'Inter','Segoe UI',sans-serif;
+  background: radial-gradient(circle at top right,#1e1b4b,#020617),
+              radial-gradient(circle at bottom left,#312e81,#020617);
+  background-attachment:fixed;
+  color:#e2e8f0;
+  min-height:100vh;
+}
 
-    /* LEFT DETAILS CARD */
-    .details-card {
-        background: #f8fafc;
-        border-radius: 16px;
-        padding: 40px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.08);
-        animation: fadeInLeft 1s ease;
-        color: #1e293b;
-    }
+/* Particles */
 
-    .details-card h1 {
-        font-size: 36px;
-        margin-bottom: 20px;
-        color: #312e81;
-    }
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
 
-    .details-card p {
-        font-size: 17px;
-        line-height: 1.7;
-        color: #475569;
-        margin-bottom: 30px;
-    }
+.particles span {
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: rgba(0,242,254,0.7);
+  border-radius: 50%;
+  animation: floatParticles linear infinite;
+}
 
-    /* REGISTER BUTTON */
-    .register-btn {
-        display: inline-block;
-        padding: 14px 40px;
-        font-size: 18px;
-        background: linear-gradient(90deg, #ec4899, #8b5cf6);
-        color: white;
-        border-radius: 30px;
-        text-decoration: none;
-        animation: glowPulse 2.2s infinite;
-        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-    }
+@keyframes floatParticles {
+  from {transform: translateY(100vh) scale(0.5); opacity:0;}
+  10% {opacity:1;}
+  to {transform: translateY(-10vh) scale(1); opacity:0;}
+}
 
-    /* 🎯 Hover — primary button */
-    .register-btn:hover {
-        transform: translateY(-4px) scale(1.06);
-        box-shadow: 0 0 26px rgba(236,72,153,0.95);
-    }
+.home-box {
+position: fixed;
+top: 20px;
+left: 20px;
+padding: 10px 20px;
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(10px);
+border: 1px solid var(--card-border);
+color: var(--primary-neon);
+text-decoration: none;
+border-radius: 8px;
+font-size: 14px;
+font-weight: 600;
+transition: 0.3s;
+z-index: 1000;
+}
 
-    /* 🎮 Dual register buttons container */
-    .dual-register {
-        display: flex;
-        gap: 16px;
-        margin-top: 35px;
-        justify-content: left;
-        flex-wrap: wrap;
-    }
+.home-box:hover {
+background: var(--primary-neon);
+color: #020617;
+box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+}
 
-    /* 🎮 BGMI visual variation */
-    .register-btn.alt {
-        background: linear-gradient(90deg, #2563eb, #1e40af);
-    }
+.page-container{
+  max-width:1300px;
+  margin:80px auto 40px;
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:25px;
+  padding:20px;
+}
 
-    /* 🎯 BGMI hover — different glow + slight delay */
-    .register-btn.alt:hover {
-        transform: translateY(-4px) scale(1.06);
-        box-shadow: 0 0 26px rgba(37,99,235,0.95);
-        transition-delay: 0.08s;
-    }
+.details-card{
+  background:var(--glass-bg);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--card-border);
+  border-radius:24px;
+  padding:40px;
+  animation:fadeInLeft .8s ease;
+}
 
-    /* RIGHT POSTER SECTION */
-    .poster-box {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: fadeInRight 1s ease;
-    }
+.sidebar-sticky{
+  position:sticky;
+  top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  animation:fadeInRight .8s ease;
+}
 
-    .poster-box img {
-        width: 100%;
-        max-width: 380px;
-        border-radius: 18px;
-        box-shadow: 0 0 30px rgba(0,0,0,0.4);
-    }
+h1{
+  font-size:3rem;
+  margin-top:0;
+  background:linear-gradient(to right,#fff,var(--primary-neon));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    /* HOME BUTTON */
-    .home-box {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        padding: 8px 18px;
-        background: #2563eb;
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 600;
-    }
+.section{
+  margin-top:25px;
+  padding:20px;
+  background:rgba(255,255,255,0.03);
+  border-radius:12px;
+  border-left:4px solid var(--secondary-neon);
+}
 
-    /* ANIMATIONS */
-    @keyframes fadeInLeft {
-        from { opacity: 0; transform: translateX(-40px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
+.section h3{
+  margin:0 0 10px;
+  color:var(--primary-neon);
+  text-transform:uppercase;
+  font-size:1rem;
+}
 
-    @keyframes fadeInRight {
-        from { opacity: 0; transform: translateX(40px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
+.section p,.section ul{
+  line-height:1.7;
+  color:#94a3b8;
+}
 
-    @keyframes glowPulse {
-        0% { box-shadow: 0 0 15px rgba(236,72,153,0.5); }
-        50% { box-shadow: 0 0 30px rgba(139,92,246,0.9); }
-        100% { box-shadow: 0 0 15px rgba(236,72,153,0.5); }
-    }
+.highlight{
+  background:rgba(0,242,254,0.1);
+  border:1px dashed var(--primary-neon);
+  padding:15px;
+  border-radius:8px;
+  color:#fff;
+}
 
-    /* MOBILE VIEW */
-    @media (max-width: 768px) {
-        .page-container {
-            grid-template-columns: 1fr;
-            text-align: center;
-        }
+.sidebar-card{
+  background:var(--glass-bg);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--card-border);
+  border-radius:20px;
+  padding:25px;
+}
 
-        .poster-box {
-            margin-top: 30px;
-        }
+.register-btn {
+display: block;
+padding: 18px;
+font-size: 18px;
+font-weight: bold;
+text-transform: uppercase;
+background: linear-gradient(90deg, #8b5cf6, #ec4899);
+color: white;
+border-radius: 12px;
+text-decoration: none;
+transition: 0.4s;
+text-align: center;
+box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+}
 
-        .details-card h1 {
-            text-align: center;
-        }
+.register-btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+}
 
-        .register-btn {
-            display: block;
-            margin: 0 auto;
-        }
+.poster-box img{
+  width:100%;
+  border-radius:18px;
+  border:1px solid var(--card-border);
+  box-shadow:0 15px 30px rgba(0,0,0,.5);
+}
 
-        .dual-register {
-            flex-direction: column;
-        }
-    }
+.contact-list{
+  list-style:none;
+  padding:0;
+}
+
+.contact-list li{
+  margin-bottom:8px;
+  color:#e2e8f0;
+}
+
+@keyframes fadeInLeft{
+from{opacity:0;transform:translateX(-30px);}
+to{opacity:1;transform:translateX(0);}
+}
+
+@keyframes fadeInRight{
+from{opacity:0;transform:translateX(30px);}
+to{opacity:1;transform:translateX(0);}
+}
+
+@media(max-width:1000px){
+.page-container{
+grid-template-columns:1fr;
+margin:70px 0;
+padding:0 12px;
+gap:16px;
+}
+
+.details-card{
+padding:22px 18px;
+border-radius:18px;
+}
+
+.section{
+padding:16px;
+border-radius:12px;
+}
+
+.sidebar-sticky{
+position:static;
+gap:16px;
+}
+
+h1{
+font-size:2rem;
+}
+}
 </style>
-
 </head>
 
 <body>
 
-<a href="/" class="home-box">Home</a>
+<div class="particles">
+  <span style="left:10%; animation-duration:18s;"></span>
+  <span style="left:20%; animation-duration:22s;"></span>
+  <span style="left:30%; animation-duration:15s;"></span>
+  <span style="left:40%; animation-duration:20s;"></span>
+  <span style="left:50%; animation-duration:17s;"></span>
+  <span style="left:60%; animation-duration:25s;"></span>
+  <span style="left:70%; animation-duration:19s;"></span>
+  <span style="left:80%; animation-duration:23s;"></span>
+  <span style="left:90%; animation-duration:21s;"></span>
+</div>
+
+<a href="/" class="home-box">← Back to Home</a>
 
 <div class="page-container">
 
-  <!-- LEFT: EVENT DETAILS -->
   <div class="details-card">
-    <h1>Free Fire / BGMI</h1>
 
-    <p>
-      The Free Fire / BGMI event at TechFeast brings the thrill of competitive
-      e-sports to the fest. Participants will compete in intense multiplayer
-      battle royale matches that test strategy, teamwork, reflexes, and survival
-      skills. This event celebrates gaming talent, coordination, and tactical
-      decision-making in a high-energy competitive environment.
-    </p>
+    <h1>Gaming Arena — FreeFire / BGMI</h1>
 
-    <div class="dual-register">
+    <div class="section">
+      <h3>About the Event</h3>
+      <p>
+        Gaming Arena brings competitive esports action to the campus. Participants will compete in intense battle royale matches where strategy, teamwork, reflexes, and survival skills determine the winner. This is not casual gaming — this is competitive survival.
+      </p>
+    </div>
 
-      <a href="/register?eventName=Free Fire"
-         class="register-btn">
-        Register for Free Fire
-      </a>
+    <div class="section">
+      <h3>Match Rules</h3>
+      <ul>
+        <li>Official tournament room will be created by organizers.</li>
+        <li>All participants must join on time.</li>
+        <li>Use of hacks, scripts, or unfair tools leads to immediate disqualification.</li>
+        <li>Emulator usage only if permitted in the official rulebook.</li>
+        <li>Players are responsible for maintaining a stable internet connection.</li>
+      </ul>
+    </div>
 
-      <a href="/register?eventName=BGMI"
-         class="register-btn alt">
-        Register for BGMI
-      </a>
+    <div class="section">
+      <h3>Game Titles</h3>
+      <ul>
+        <li>BGMI (Battlegrounds Mobile India)</li>
+        <li>Free Fire</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Team Specifications</h3>
+      <ul>
+        <li>Squad Mode Only — 4 Players per Team</li>
+        <li>Solo Mode Removed</li>
+        <li>All players must carry valid college ID</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Event Format</h3>
+      <ul>
+        <li>League / Qualification Round</li>
+        <li>Semi-Finals</li>
+        <li>Grand Finals</li>
+      </ul>
+      <p>Maps and match settings will be announced before the match.</p>
+    </div>
+
+    <div class="section">
+      <h3>Student Coordinators</h3>
+
+      <p><strong>BGMI:</strong></p>
+      <ul class="contact-list">
+        <li>M. Sai Charan – 6372319197</li>
+        <li>Uma Mahesh</li>
+        <li>S. Sai Kumar</li>
+        <li>S. Chirangeevi</li>
+      </ul>
+
+      <p><strong>Free Fire:</strong></p>
+      <ul class="contact-list">
+        <li>K. Lavanya Kumar – 9392542844</li>
+        <li>D. Manikanta</li>
+        <li>U. Karthik</li>
+        <li>M. Abhi</li>
+      </ul>
 
     </div>
+
   </div>
 
-  <!-- RIGHT: POSTER -->
-  <div class="poster-box">
-    <img src="/images/freefire-bgmi.png" alt="Free Fire / BGMI Poster">
+  <div class="sidebar-sticky">
+
+    <div class="poster-box">
+      <img src="/images/gaming_arena.png" alt="Gaming Arena Poster">
+    </div>
+
+    <div class="sidebar-card">
+
+      <div class="section" style="margin-top:0;">
+        <h3>Event Timing & Fee</h3>
+        <div class="highlight">
+          📅 24–25th March 2k26 <br><br>
+          💰 Free Fire: <strong>₹300 per Squad</strong><br>
+          💰 BGMI: <strong>₹200 per Squad</strong>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Prize</h3>
+        <div class="highlight" style="border-color:#fbbf24;">
+          🏆 <strong>1st Prize — Up to ₹5,000 + Certificate</strong><br>
+          🥈 <strong>2nd Prize — Up to ₹1,000 + Certificate</strong>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Faculty Coordinator</h3>
+        <ul class="contact-list">
+          <li><strong>Dr. Soumyadeep Maiti</strong> - 7740823191</li>
+        </ul>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px; margin-top:20px;">
+
+        <a href="/register?eventName=BGMI" class="register-btn">
+          Register for BGMI
+        </a>
+
+        <a href="/register?eventName=FreeFire" class="register-btn"
+           style="background:linear-gradient(90deg,#22c55e,#06b6d4); box-shadow:0 10px 20px rgba(6,182,212,0.3);">
+          Register for FreeFire
+        </a>
+
+      </div>
+
+    </div>
+
   </div>
 
 </div>
