@@ -3,170 +3,335 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mind Maze | TechFeast</title>
+  <title>Mind Maze - Technical Puzzle Arena | TechFeast</title>
 
   <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #0f172a, #020617);
-        min-height: 100vh;
-    }
+:root {
+  --primary-neon: #00f2fe;
+  --secondary-neon: #4facfe;
+  --accent-pink: #ec4899;
+  --glass-bg: rgba(15, 23, 42, 0.85);
+  --card-border: rgba(255, 255, 255, 0.1);
+}
 
-    .page-container {
-        max-width: 1150px;
-        margin: 100px auto 60px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        padding: 50px;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 0 50px rgba(0,0,0,0.4);
-    }
+body{
+  margin:0;
+  font-family:'Inter','Segoe UI',sans-serif;
+  background: radial-gradient(circle at top right,#1e1b4b,#020617),
+              radial-gradient(circle at bottom left,#312e81,#020617);
+  background-attachment:fixed;
+  color:#e2e8f0;
+  min-height:100vh;
+}
 
-    .details-card {
-        background: #f8fafc;
-        border-radius: 16px;
-        padding: 40px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.08);
-        animation: fadeInLeft 1s ease;
-        color: #1e293b;
-    }
+/* Particles */
 
-    .details-card h1 {
-        font-size: 34px;
-        margin-bottom: 20px;
-        color: #312e81;
-    }
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
 
-    .details-card p {
-        font-size: 17px;
-        line-height: 1.7;
-        color: #475569;
-        margin-bottom: 20px;
-    }
+.particles span {
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: rgba(0,242,254,0.7);
+  border-radius: 50%;
+  animation: floatParticles linear infinite;
+}
 
-    .details-card ul {
-        padding-left: 20px;
-        margin-bottom: 30px;
-        line-height: 1.7;
-        color: #334155;
-    }
+@keyframes floatParticles {
+  from {transform: translateY(100vh) scale(0.5); opacity:0;}
+  10% {opacity:1;}
+  to {transform: translateY(-10vh) scale(1); opacity:0;}
+}
 
-    .register-btn {
-        display: inline-block;
-        padding: 14px 40px;
-        font-size: 18px;
-        background: linear-gradient(90deg, #ec4899, #8b5cf6);
-        color: white;
-        border-radius: 30px;
-        text-decoration: none;
-        animation: glowPulse 2.2s infinite;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.home-box {
+position: fixed;
+top: 20px;
+left: 20px;
+padding: 10px 20px;
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(10px);
+border: 1px solid var(--card-border);
+color: var(--primary-neon);
+text-decoration: none;
+border-radius: 8px;
+font-size: 14px;
+font-weight: 600;
+transition: 0.3s;
+z-index: 1000;
+}
 
-    .register-btn:hover {
-        transform: scale(1.07);
-        box-shadow: 0 0 25px rgba(236,72,153,0.9);
-    }
+.home-box:hover {
+background: var(--primary-neon);
+color: #020617;
+box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+}
 
-    .poster-box {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: fadeInRight 1s ease;
-    }
+.page-container{
+  max-width:1300px;
+  margin:80px auto 40px;
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:25px;
+  padding:20px;
+}
 
-    .poster-box img {
-        width: 100%;
-        max-width: 380px;
-        border-radius: 18px;
-        box-shadow: 0 0 30px rgba(0,0,0,0.4);
-    }
+.details-card{
+  background:var(--glass-bg);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--card-border);
+  border-radius:24px;
+  padding:40px;
+  animation:fadeInLeft .8s ease;
+}
 
-    .home-box {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        padding: 8px 18px;
-        background: #2563eb;
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 600;
-    }
+.sidebar-sticky{
+  position:sticky;
+  top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  animation:fadeInRight .8s ease;
+}
 
-    @keyframes fadeInLeft {
-        from { opacity: 0; transform: translateX(-40px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
+h1{
+  font-size:3rem;
+  margin-top:0;
+  background:linear-gradient(to right,#fff,var(--primary-neon));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    @keyframes fadeInRight {
-        from { opacity: 0; transform: translateX(40px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
+.section{
+  margin-top:25px;
+  padding:20px;
+  background:rgba(255,255,255,0.03);
+  border-radius:12px;
+  border-left:4px solid var(--secondary-neon);
+}
 
-    @keyframes glowPulse {
-        0% { box-shadow: 0 0 15px rgba(236,72,153,0.5); }
-        50% { box-shadow: 0 0 30px rgba(139,92,246,0.9); }
-        100% { box-shadow: 0 0 15px rgba(236,72,153,0.5); }
-    }
+.section h3{
+  margin:0 0 10px;
+  color:var(--primary-neon);
+  text-transform:uppercase;
+  font-size:1rem;
+}
 
-    @media (max-width: 768px) {
-        .page-container {
-            grid-template-columns: 1fr;
-            text-align: center;
-        }
+.section p,.section ul{
+  line-height:1.7;
+  color:#94a3b8;
+}
 
-        .poster-box {
-            margin-top: 30px;
-        }
+.highlight{
+  background:rgba(0,242,254,0.1);
+  border:1px dashed var(--primary-neon);
+  padding:15px;
+  border-radius:8px;
+  color:#fff;
+}
 
-        .details-card h1 {
-            text-align: center;
-        }
+.sidebar-card{
+  background:var(--glass-bg);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--card-border);
+  border-radius:20px;
+  padding:25px;
+}
 
-        .register-btn {
-            display: block;
-            margin: 0 auto;
-        }
-    }
-  </style>
+.register-btn {
+display: block;
+padding: 18px;
+font-size: 18px;
+font-weight: bold;
+text-transform: uppercase;
+background: linear-gradient(90deg, #8b5cf6, #ec4899);
+color: white;
+border-radius: 12px;
+text-decoration: none;
+transition: 0.4s;
+text-align: center;
+box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+}
+
+.register-btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+}
+
+.poster-box img{
+  width:100%;
+  border-radius:18px;
+  border:1px solid var(--card-border);
+  box-shadow:0 15px 30px rgba(0,0,0,.5);
+}
+
+.contact-list{
+  list-style:none;
+  padding:0;
+}
+
+.contact-list li{
+  margin-bottom:8px;
+  color:#e2e8f0;
+}
+
+@keyframes fadeInLeft{
+from{opacity:0;transform:translateX(-30px);}
+to{opacity:1;transform:translateX(0);}
+}
+
+@keyframes fadeInRight{
+from{opacity:0;transform:translateX(30px);}
+to{opacity:1;transform:translateX(0);}
+}
+
+@media(max-width:1000px){
+
+.page-container{
+grid-template-columns:1fr;
+margin:70px 0;
+padding:0 12px;
+gap:16px;
+}
+
+.details-card{
+padding:22px 18px;
+border-radius:18px;
+}
+
+.section{
+padding:16px;
+border-radius:12px;
+}
+
+.sidebar-sticky{
+position:static;
+gap:16px;
+}
+
+h1{
+font-size:2rem;
+}
+
+}
+</style>
 </head>
 
 <body>
 
-<a href="/" class="home-box">Home</a>
+<div class="particles">
+  <span style="left:10%; animation-duration:18s;"></span>
+  <span style="left:20%; animation-duration:22s;"></span>
+  <span style="left:30%; animation-duration:15s;"></span>
+  <span style="left:40%; animation-duration:20s;"></span>
+  <span style="left:50%; animation-duration:17s;"></span>
+  <span style="left:60%; animation-duration:25s;"></span>
+  <span style="left:70%; animation-duration:19s;"></span>
+  <span style="left:80%; animation-duration:23s;"></span>
+  <span style="left:90%; animation-duration:21s;"></span>
+</div>
+
+<a href="/" class="home-box">← Back to Home</a>
 
 <div class="page-container">
 
-  <!-- LEFT -->
   <div class="details-card">
-    <h1>Mind Maze — Technical Puzzle Arena</h1>
 
-    <p>
-      Mind Maze — Technical Puzzle Arena is a brain-boosting challenge designed
-      to test participants’ analytical thinking, logical reasoning, and technical
-      problem-solving skills through exciting puzzles and competitive rounds.
-    </p>
+    <h1>Mind Maze - Technical Puzzle Arena</h1>
 
-    <ul>
-      <li>🧠 Logical & Technical Puzzle Rounds</li>
-      <li>⚡ Rapid Problem-Solving Challenges</li>
-      <li>📊 Evaluation based on Accuracy & Speed</li>
-      <li>🏆 Winners advance through elimination stages</li>
-    </ul>
+    <div class="section">
+      <h3>About the Event</h3>
+      <p>
+        Mind Maze is an exciting intellectual challenge designed to test participants’ logical thinking, analytical ability, and problem-solving skills. Participants will navigate through a series of puzzles, riddles, and brain-teasing challenges that require creativity, quick thinking, and accuracy. This event is perfect for those who enjoy solving complex problems and pushing the limits of their minds.
+      </p>
+    </div>
 
-    <a href="/register?eventName=Mind Maze" class="register-btn">
-      Register Now
-    </a>
+    <div class="section">
+      <h3>Rules & Guidelines</h3>
+      <ul>
+        <li>Use of unfair means or external help is strictly prohibited.</li>
+        <li>Participants must follow all instructions given by organizers.</li>
+        <li>Judges’ decision will be final.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Event Format</h3>
+      <ul>
+        <li>Logical Puzzle Round</li>
+        <li>Brain Teaser Round</li>
+        <li>Rapid Fire Thinking Round</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Participation</h3>
+      <ul>
+        <li>Individual Participation</li>
+        <li>Open to all students</li>
+        <li>Valid College ID mandatory</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Student Coordinators</h3>
+      <ul class="contact-list">
+        <li><strong>A. Kiranmai</strong> – 9178266895</li>
+        <li><strong>M. Pavitra</strong> – 8260927962</li>
+        <li><strong>K. Mounika</strong> – 9827420146</li>
+        <li><strong>K. Chandini</strong></li>
+        <li><strong>A. Indumati</strong></li>
+      </ul>
+    </div>
+
   </div>
 
-  <!-- RIGHT -->
-  <div class="poster-box">
-    <img src="/images/mind-maze.png" alt="Mind Maze Poster">
+  <div class="sidebar-sticky">
+
+    <div class="poster-box">
+      <img src="/images/mindmaze.png" alt="Mind Maze Poster">
+    </div>
+
+    <div class="sidebar-card">
+
+      <div class="section" style="margin-top:0;">
+        <h3>Event Timing & Fee</h3>
+        <div class="highlight">
+          📅 24 March 2026 <br>
+          💰 Fee: <strong>₹50</strong>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Prize</h3>
+        <div class="highlight" style="border-color:#fbbf24;">
+          🏆 <strong>1st Prize — Up to ₹2,000 + Certificate</strong><br>
+          🥈 <strong>2nd Prize — Certificate</strong>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Faculty Coordinator</h3>
+        <ul class="contact-list">
+          <li><strong>-----</strong></li>
+          <li><strong>-----</strong></li>
+        </ul>
+      </div>
+
+      <a href="/register?eventName=Mind Maze" class="register-btn" style="margin-top:20px;">
+        Secure your spot
+      </a>
+
+    </div>
   </div>
 
 </div>
