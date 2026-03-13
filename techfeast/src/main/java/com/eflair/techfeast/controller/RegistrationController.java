@@ -65,6 +65,12 @@ public class RegistrationController {
             @RequestParam(value = "paymentScreenshot", required = false) MultipartFile screenshot,
             Model model) {
 
+        // Handle "Other" department
+        // Handle "Other" department safely
+        if (registration.getOtherDepartment() != null && !registration.getOtherDepartment().isBlank()) {
+            registration.setDepartment(registration.getOtherDepartment().trim());
+        }
+
         // PAYMENT
         if ("ONLINE".equalsIgnoreCase(registration.getPaymentMode())) {
 

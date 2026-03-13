@@ -43,6 +43,7 @@ public class Registration {
     private String transactionId;
     private String cashReceiver;
     private String receiverPhone;
+    private String otherDepartment;
 
     // -------- Constructors --------
     public Registration() {
@@ -151,6 +152,14 @@ public class Registration {
 
     public void setCashReceiver(String cashReceiver) {
         this.cashReceiver = cashReceiver;
+    }
+
+    public String getOtherDepartment() {
+        return otherDepartment;
+    }
+
+    public void setOtherDepartment(String otherDepartment) {
+        this.otherDepartment = otherDepartment;
     }
 
     public String getReceiverPhone() {

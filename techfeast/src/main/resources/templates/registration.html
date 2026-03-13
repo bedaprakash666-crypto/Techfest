@@ -254,6 +254,22 @@ window.addEventListener("DOMContentLoaded", function () {
     const loadingText = document.getElementById("loadingText");
 
     form.addEventListener("submit", function () {
+        const deptSelect = document.getElementById("department");
+    const otherDept = document.getElementById("otherDepartment");
+
+    if (deptSelect.value === "Other") {
+
+        if (!otherDept.value.trim()) {
+            alert("Please enter your department name.");
+            otherDept.focus();
+            event.preventDefault();
+            return;
+        }
+
+        // replace "Other" with typed department
+        deptSelect.value = otherDept.value.trim();
+    }
+
         submitBtn.disabled = true;
         submitBtn.innerText = "Please wait...";
         loadingText.style.display = "block";
@@ -303,18 +319,28 @@ function hideRollHint() {
 
 let registrationMode = "NORMAL";
 
-function checkDepartment() {
+function handleDepartmentChange() {
+
+    const dept = document.getElementById("department").value;
+    const otherBox = document.getElementById("otherDeptBox");
 
     const preSelectedEvent = document.getElementById("eventPreSelected").value;
 
-    // If user came from event page → skip funding popup
+    // Show input if "Other"
+    if (dept === "Other") {
+        otherBox.style.display = "block";
+        document.getElementById("otherDepartment").required = true;
+    } else {
+        otherBox.style.display = "none";
+        document.getElementById("otherDepartment").required = false;
+    }
+
+    // Skip popup if coming from event page
     if (preSelectedEvent && preSelectedEvent !== "") {
         return;
     }
 
-    const dept = document.getElementById("department")
-        .value.trim().toUpperCase();
-
+    // Trigger funding popup for ECE / EEE
     if (dept === "ECE" || dept === "EEE") {
         document.getElementById("ecePopup").style.display = "flex";
     }
@@ -506,11 +532,28 @@ window.addEventListener("DOMContentLoaded", function () {
 
     <label>Department</label>
 <!--    <input type="text" name="department" required>-->
-    <input type="text"
-           name="department"
-           id="department"
-           required
-           onblur="checkDepartment()">
+      <select name="department"
+              id="department"
+              required
+              onchange="handleDepartmentChange()">
+
+          <option value="">Select Department</option>
+          <option value="EEE">EEE</option>
+          <option value="ECE">ECE</option>
+          <option value="CSE">CSE</option>
+          <option value="Mechanical">Mechanical</option>
+          <option value="Civil">Civil</option>
+          <option value="Other">Other</option>
+
+      </select>
+
+      <div id="otherDeptBox" style="display:none;">
+          <label>Enter Department Name</label>
+          <input type="text"
+                 id="otherDepartment"
+                 name="otherDepartment"
+                 placeholder="Enter your department">
+      </div>
 
 
     <label>Year</label>
