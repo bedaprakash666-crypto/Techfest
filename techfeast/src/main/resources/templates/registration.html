@@ -459,8 +459,6 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
-
 </script>
 
 </head>
@@ -574,18 +572,16 @@ window.addEventListener("DOMContentLoaded", function () {
     <label>Email</label>
     <input type="email" name="email" required>
 
-    <label>Select Event</label>
-<!--    <select name="eventName" required>-->
-    <select name="eventName"
-            id="eventSelect">
-    <option value="">Select Event</option>
-      <option
-              th:each="e : ${events}"
-              th:value="${e}"
-              th:text="${e}"
-              th:selected="${e == selectedEvent}">
-      </option>
-    </select>
+      <label>Select Event</label>
+      <select name="eventName" id="eventSelect">
+          <option value="">Select Event</option>
+          <option
+                  th:each="e : ${events}"
+                  th:value="${e}"
+                  th:text="${e}"
+                  th:selected="${e == selectedEvent}">
+          </option>
+      </select>
 
     <!-- 🎯 TWO EVENT SELECTION (ECE / EEE FUNDING) -->
     <div id="multiEventBox" style="display:none; margin-top:15px;">

@@ -28,17 +28,19 @@ public class RegistrationPageController {
                 "Project Expo",
                 "Ideathon",
                 "IoT / Smart Circuit Design Championship",
-                "Coding Level 1.0",
+                "Coding Competition",
                 "Technical Poster Presentation",
                 "Tech Quiz",
                 "J30M — Presentation Challenge",
-                "Robo Race",
+                "Robo War",
                 "Virtual Campus Drive",
-                "Hardware Redesign"
+                "Hardware Redesign",
+                "Mind Maze"
         ));
 
         List<String> nonTechnicalEvents = new ArrayList<>(Arrays.asList(
                 "Free Fire",
+                "BGMI",
                 "Rangoli Competition",
                 "Digital Painting Competition",
                 "Treasure Hunt",

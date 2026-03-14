@@ -1,90 +1,182 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Login</title>
+  <title>Techfest | Admin Access</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --neon-purple: #7000ff;
+            --bg-dark: #020617;
+            --glass-bg: rgba(15, 23, 42, 0.8);
+        }
+
         body {
             margin: 0;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0f172a, #312e81);
-            font-family: Arial, sans-serif;
+            background-color: var(--bg-dark);
+            /* Animated background pattern */
+            background-image:
+                radial-gradient(circle at 2px 2px, rgba(0, 242, 255, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Ambient Glows */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--neon-purple);
+            filter: blur(150px);
+            top: 10%;
+            left: 10%;
+            z-index: -1;
+            opacity: 0.4;
         }
 
         .login-box {
-            background: white;
+            background: var(--glass-bg);
             padding: 40px;
-            border-radius: 10px;
-            width: 360px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-radius: 16px;
+            width: 380px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5),
+                        inset 0 0 1px rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        /* The Neon Border Line */
+        .login-box::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            border-radius: 16px 16px 0 0;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 25px;
-            color: #1f2937;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
         }
 
         label {
-            font-weight: 600;
-            margin-top: 15px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--neon-blue);
+            margin-bottom: 8px;
             display: block;
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            margin-top: 6px;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
             box-sizing: border-box;
         }
 
+        input:focus {
+            border-color: var(--neon-blue);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+        }
+
         button {
-            margin-top: 25px;
+            margin-top: 20px;
             width: 100%;
-            padding: 12px;
-            background: #312e81;
-            color: white;
-            border: none;
+            padding: 14px;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             cursor: pointer;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
         }
 
         button:hover {
-            background: #1e3a8a;
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 20px var(--neon-blue);
         }
 
         .error {
-            color: red;
-            margin-top: 10px;
+            color: #ff4d4d;
+            margin-top: 15px;
             text-align: center;
+            font-size: 0.9rem;
+            background: rgba(255, 77, 77, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 77, 77, 0.2);
+        }
+
+        /* Small decorative element */
+        .tech-decor {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-family: monospace;
+            font-size: 10px;
+            color: rgba(255,255,255,0.2);
         }
     </style>
 </head>
-
 <body>
 
 <div class="login-box">
-  <h2>Admin Login</h2>
+  <h2>System Core</h2>
 
   <form method="post" action="/admin/login">
-    <label>Username</label>
-    <input type="text" name="username" required>
+    <div class="input-group">
+      <label>Admin ID</label>
+      <input type="text" name="username" placeholder="IDENTIFY YOURSELF" required>
+    </div>
 
-    <label>Password</label>
-    <input type="password" name="password" required>
+    <div class="input-group">
+      <label>Access Key</label>
+      <input type="password" name="password" placeholder="-------" required>
+    </div>
 
     <button type="submit">Login</button>
 
     <div class="error" th:if="${error}">
-      Invalid credentials
+      AUTHENTICATION_FAILED: RE-ENTER CREDENTIALS
     </div>
   </form>
+
+  <div class="tech-decor">v2.0.26 // AUTH_REQUIRED</div>
 </div>
 
 </body>
