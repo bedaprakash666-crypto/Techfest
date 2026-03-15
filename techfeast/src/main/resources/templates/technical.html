@@ -1,198 +1,534 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Technical Events</title>
-
+  <title>Technical Events | E-Flair 2k26</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #020617);
-      color: white;
-      min-height: 100vh;
-    }
+        :root {
+            --cyan-400: #00f2fe;
+            --blue-500: #0061ff;
+            --slate-400: #94a3b8;
+            --glass-bg: rgba(15, 23, 42, 0.7);
+        }
 
-    h1 {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 42px;
-      letter-spacing: 1px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    .subtitle {
-        text-align: center;
-        color: #94a3b8;
-        margin-bottom: 40px;
-    }
+        body {
+            background-color: #020617;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* Subgrid pattern background */
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 0);
+            background-size: 30px 30px;
+        }
 
-<!--    .events-container {-->
-<!--      width: 85%;-->
-<!--      margin: 50px auto;-->
-<!--      display: grid;-->
-<!--      grid-template-columns: repeat(3, 1fr);-->
-<!--      gap: 30px;-->
-<!--    }-->
-    .events-container {
-        width: 90%;
-        margin: 50px auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-    }
+        /* Ambient Background Glow */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, transparent 70%);
+            z-index: -1;
+        }
 
+        /* --- NAVIGATION --- */
+        .home-box {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 14px;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
 
-    a {
-      text-decoration: none;
-    }
+        .home-box:hover {
+            background: var(--cyan-400);
+            color: #020617;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+        }
 
-    .event-card {
-      background: rgba(255, 255, 255, 0.08);
-      height: 120px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      font-size: 18px;
-      font-weight: 600;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
+        /* --- HEADER --- */
+        .header-section {
+            padding-top: 100px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
 
-    .event-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
-    }
+        .cpu-icon-wrapper {
+            display: inline-flex;
+            padding: 20px;
+            border-radius: 24px;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--cyan-400);
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
 
-    .register-container {
-      text-align: center;
-      margin: 50px 0;
-    }
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--cyan-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
 
-    /* 🔥 REGISTER BUTTON */
-    .register-btn {
-      padding: 14px 36px;
-      font-size: 18px;
-      background: linear-gradient(90deg, #ec4899, #8b5cf6);
-      color: white;
-      border-radius: 30px;
+        .subtitle {
+            color: var(--slate-400);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
 
-      /* CONSTANT GLOW */
-      animation: glowPulse 2.2s infinite ease-in-out;
+        /* --- GRID --- */
+        .events-container {
+            width: 92%;
+            max-width: 1300px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
 
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
-    }
+        .event-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            transition: 0.4s ease;
+            position: relative;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .register-btn:hover {
-      transform: translateY(-4px) scale(1.08);
-      box-shadow:
-        0 0 20px rgba(236,72,153,0.9),
-        0 0 40px rgba(139,92,246,0.9);
-      background: linear-gradient(90deg, #f472b6, #a78bfa);
-    }
+        .event-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 242, 254, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            background: rgba(15, 23, 42, 0.9);
+        }
 
-    /* ✨ GLOW ANIMATION */
-    @keyframes glowPulse {
-      0% {
-        box-shadow:
-          0 0 8px rgba(236,72,153,0.5),
-          0 0 18px rgba(139,92,246,0.4);
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            font-size: 28px;
+            background: rgba(255, 255, 255, 0.05);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .event-card h3 {
+            font-size: 1.25rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .description {
+            color: var(--slate-400);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .meta-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .meta-item .icon-label {
+            color: var(--cyan-400);
+        }
+
+        .reg-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .event-card:hover .reg-link {
+            background: linear-gradient(90deg, var(--cyan-400), var(--blue-500));
+            color: #020617;
+        }
+
+        /* --- BOTTOM BUTTON --- */
+        .register-container {
+            text-align: center;
+            padding-bottom: 100px;
+        }
+
+        .main-register-btn {
+            padding: 18px 45px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(90deg, #ec4899, #8b5cf6);
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+            transition: 0.3s ease;
+            display: inline-block;
+        }
+
+        .main-register-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .events-container { grid-template-columns: 1fr; }
+            .header-section { padding-top: 80px; }
+        }
+        /* ========================================= */
+        /* NAVBAR BASE STYLING (Desktop & Global)    */
+        /* ========================================= */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+            display: flex;
+            justify-content: space-between; /* Pushes Logo Left and Links Right */
+            align-items: center;
+        }
+
+        /* --- LOGO STYLING --- */
+        .logo-link {
+            text-decoration: none;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #00f2fe;
+            font-weight: 700;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #00f2fe, #0061ff);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 6px;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Rotation logic */
+        .logo-link:hover .logo-icon {
+            transform: rotate(180deg);
+        }
+
+        /* --- NAV LINKS STYLING --- */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: #00f2fe;
+        }
+
+        @media (max-width: 768px) {
+            .hide-mobile { display: none; }
+            .nav-links { gap: 0; }
+        }
+
+      /* --- FROZEN EVENT STYLE --- */
+      .event-card.frozen {
+          filter: grayscale(0.8); /* Greys out the card */
+          opacity: 0.6;
+          cursor: not-allowed;
+          pointer-events: none; /* Disables all clicks and hovers */
+          border: 1px dashed rgba(255, 255, 255, 0.2);
       }
-      50% {
-        box-shadow:
-          0 0 16px rgba(236,72,153,0.9),
-          0 0 36px rgba(139,92,246,0.9);
-      }
-      100% {
-        box-shadow:
-          0 0 8px rgba(236,72,153,0.5),
-          0 0 18px rgba(139,92,246,0.4);
-      }
-    }
 
-    .home-box {
-       position: absolute;
-       top: 20px;
-       left: 20px;
-       padding: 10px 18px;
-       background: linear-gradient(90deg, #ec4899, #8b5cf6);
-       color: white;
-       text-decoration: none;
-       border-radius: 30px;
-       font-size: 14px;
-    }
-
-    .home-box:hover {
-       transform: translateY(-2px);
-       box-shadow: 0 10px 24px rgba(37, 99, 235, 0.65);
-    }
-
-    /* MOBILE VIEW */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 28px;
-        margin-top: 60px;
+      /* Removes the glowing border for frozen cards */
+      .event-card.frozen::before {
+          display: none;
       }
 
-      .events-container {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
+      .event-card.frozen .status-label {
+          background: rgba(255, 255, 255, 0.1) !important;
+          color: #94a3b8 !important;
+          border: 1px solid rgba(255, 255, 255, 0.1);
       }
 
-      .event-card {
-        height: 90px;
-        font-size: 17px;
+      .event-card.frozen .card-icon {
+          background: rgba(148, 163, 184, 0.1);
+          color: #64748b;
       }
 
-      .register-btn {
-        width: 90%;
-        min-height: 54px;
-        font-size: 16px;
-      }
-
-      .home-box {
-        font-size: 13px;
-        padding: 6px 12px;
-      }
-    }
-  </style>
+    </style>
 </head>
-
 <body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="logo-link">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+        </div>
+        <span class="logo-text">E-Flair</span>
+      </div>
+    </a>
 
-<a href="/" class="home-box">Home</a>
+    <div class="nav-links">
+      <a href="/" class="hide-mobile">Home</a>
+      <a href="/technical" class="active hide-mobile">Technical</a>
+      <a href="/nontechnical">Non-Technical</a>
+    </div>
+  </div>
+</nav>
 
-<h1>Technical Events</h1>
-<p class="subtitle">Innovate • Compete • Showcase Your Skills</p>
+<!--<a href="/" class="home-box">Home</a>-->
+
+<div class="header-section">
+  <div class="cpu-icon-wrapper">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+  </div>
+  <h1>Technical Events</h1>
+  <p class="subtitle">Innovate • Compete • Showcase Your Skills. Join the premier technical symposium of the year.</p>
+</div>
 
 <div class="events-container">
-  <a href="/project-expo.html" class="event-card">🧠 Project Expo</a>
-  <a href="/poster-presentation.html" class="event-card">📊 Technical Poster Presentation</a>
-  <a href="/robo-race.html" class="event-card">🤖 Robo War</a>
-  <a href="/quiz.html" class="event-card">❓ Tech Quiz</a>
-  <a href="/hackathon.html" class="event-card">💻 Hackathon</a>
-  <a href="/coding-competition.html" class="event-card">⌨️ Coding Competition</a>
-  <a href="/proto-lab.html" class="event-card">🧪 Hardware Redesign</a>
-<!--  <a href="/talent-pitch.html" class="event-card">🎤 Talent Pitch</a>-->
-<!--  <a href="/ai-prompt-craft.html" class="event-card">🤖✨ AI Prompt Craft</a>-->
-  <a href="/ideathon.html" class="event-card">💡🚀 Ideathon</a>
-  <a href="/virtual-campus.html" class="event-card">🏢📊 Virtual Campus</a>
-  <a href="/iot-smart-circuit.html" class="event-card">🌐🔌 IoT Championship</a>
-  <a href="/j30m.html" class="event-card">🎤🖥️ J30M – Presentation Challenge</a>
-<!--  <a href="/software-simulation.html" class="event-card">🧠💻 Simulation Challenge</a>-->
-  <a href="/mind-maze.html" class="event-card"> 🧩🧠 Mind Maze</a>
+  <a href="/project-expo.html" class="event-card">
+    <div class="card-header"><div class="card-icon">🧠</div><h3>Project Expo</h3></div>
+    <p class="description">Present your final year projects or innovative hardware prototypes to a panel of industrial judges.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span> 25th Mar 2026 (2.00PM - 4.00PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> New Auditorium</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹4,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
 
+  <a href="/poster-presentation.html" class="event-card">
+    <div class="card-header"><div class="card-icon">📊</div><h3>Poster Presentation</h3></div>
+    <p class="description">Communicate complex research and technical ideas through visually impactful poster designs.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span> 25th Mar 2026 (3.00PM - 5.00PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> CRC-2, Ground Floor</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹2,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
+
+  <a href="/robo-race.html" class="event-card">
+    <div class="card-header"><div class="card-icon">🤖</div><h3>Robo War</h3></div>
+    <p class="description">Witness the clash of titanium. Battle it out in the arena with your custom-built combat robots.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span>25th Mar 2026 (3.00PM - 4.00PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> CRC-2, 2nd Floor</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹3,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
+
+  <a href="/quiz.html" class="event-card">
+    <div class="card-header"><div class="card-icon">❓</div><h3>Tech Quiz</h3></div>
+    <p class="description">Test your knowledge across electronics, circuits, and computer science fundamentals.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span> 26th Mar 2026 (11.00AM - 12.00PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> CRC-2, C-212,213</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹5,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
+
+  <a href="/hackathon.html" class="event-card">
+    <div class="card-header"><div class="card-icon">💻</div><h3>Hackathon</h3></div>
+    <p class="description">A 24-hour sprint to build a functional software solution for a surprise problem statement.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span> 25th Mar 2026 (11.00AM - 1.30PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> New Auditorium</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹6,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
+
+  <a href="/coding-competition.html" class="event-card">
+    <div class="card-header"><div class="card-icon">⌨️</div><h3>Coding Competition</h3></div>
+    <p class="description">Solve algorithmic puzzles and data structure challenges under strict time constraints.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span> 24th Mar 2026 (10.00AM - 1.00PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> CSE LAB - 2,3,4</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹3,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
+
+<!--  <a href="/proto-lab.html" class="event-card">-->
+<!--    <div class="card-header"><div class="card-icon">🧪</div><h3>Hardware Redesign</h3></div>-->
+<!--    <p class="description">Analyze an existing circuit and optimize its performance or reduce its power consumption.</p>-->
+<!--    <div class="meta-info">-->
+<!--      <div class="meta-item"><span class="icon-label">📅</span> 24-25th Mar 2026</div>-->
+<!--      <div class="meta-item"><span class="icon-label">📍</span> ECE Lab 2</div>-->
+<!--      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹3,000</div>-->
+<!--    </div>-->
+<!--    <div class="reg-link">Register for Event →</div>-->
+<!--  </a>-->
+  <a href="javascript:void(0)" class="event-card frozen">
+    <div class="card-header">
+      <div class="card-icon">🧪</div>
+      <h3>Hardware Redesign</h3>
+    </div>
+    <p class="description">Analyze an existing circuit and optimize its performance or reduce its power consumption.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span> 24-25th Mar 2026</div>
+      <div class="meta-item"><span class="icon-label">📍</span> ECE Lab 2</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹3,000</div>
+    </div>
+    <div class="reg-link status-label">Registration Paused</div>
+  </a>
+
+  <a href="/ideathon.html" class="event-card">
+    <div class="card-header"><div class="card-icon">💡</div><h3>Ideathon</h3></div>
+    <p class="description">Pitch your startup ideas and technical solutions to real-world industrial problems.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span> 24th Mar 2026 (3.30PM - 5.30PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> CRC-2, C-212,213</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹3,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
+
+  <a href="/virtual-campus.html" class="event-card">
+    <div class="card-header"><div class="card-icon">🏢</div><h3>Virtual Campus</h3></div>
+    <p class="description">Experience a simulated placement drive with technical interviews and aptitude rounds.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span> 24th Mar 2026 (4.00PM - 5.00PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> CRC-2, C-214</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹4,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
+
+  <a href="/iot-smart-circuit.html" class="event-card">
+    <div class="card-header"><div class="card-icon">🌐</div><h3>IoT Championship</h3></div>
+    <p class="description">Build smart systems using microcontrollers, sensors, and cloud connectivity.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span> 26th Mar 2026 (11.00AM - 1.00PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> New Auditorium</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹5,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
+
+  <a href="/j30m.html" class="event-card">
+    <div class="card-header"><div class="card-icon">🎤</div><h3>J30M Presentation</h3></div>
+    <p class="description">The Just-30-Minutes challenge: Present a breakthrough technology topic with high impact.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span>26th Mar 2026 (11.00AM - 12.00PM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> ECE LAB - 2</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹1,500</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
+
+  <a href="/mind-maze.html" class="event-card">
+    <div class="card-header"><div class="card-icon">🧩</div><h3>Mind Maze</h3></div>
+    <p class="description">Solve technical riddles and hidden patterns in this logic-based scavenger hunt.</p>
+    <div class="meta-info">
+      <div class="meta-item"><span class="icon-label">📅</span>26th Mar 2026 (10.00AM - 11.00AM)</div>
+      <div class="meta-item"><span class="icon-label">📍</span> CRC-2, C-212,213</div>
+      <div class="meta-item"><span class="icon-label">🏆</span>Prize Pool - Up to ₹2,000</div>
+    </div>
+    <div class="reg-link">Register for Event →</div>
+  </a>
 </div>
 
 <div class="register-container">
-  <a href="/register?eventType=technical" class="register-btn">
-    Register for Technical Events
+  <a href="/register?eventType=technical" class="main-register-btn">
+    Reserve Your Tech Spot
   </a>
 </div>
 

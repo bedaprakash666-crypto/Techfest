@@ -1,406 +1,351 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-
-<!--    &lt;!&ndash; IMPORTANT for mobile responsiveness &ndash;&gt;-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-
-<!--    <title>E-Flair TechFeast</title>-->
-
-<!--    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">-->
-
-<!--    <style>-->
-<!--        * {-->
-<!--            margin: 0;-->
-<!--            padding: 0;-->
-<!--            box-sizing: border-box;-->
-<!--            font-family: 'Poppins', sans-serif;-->
-<!--        }-->
-
-<!--        /* 🔐 ADMIN LOGIN BUTTON */-->
-<!--        .admin-btn {-->
-<!--            position: absolute;-->
-<!--            top: 20px;-->
-<!--            right: 20px;-->
-<!--            padding: 8px 16px;-->
-<!--            background: #1e3a8a;-->
-<!--            color: white;-->
-<!--            text-decoration: none;-->
-<!--            border-radius: 6px;-->
-<!--            font-size: 14px;-->
-<!--            font-weight: 600;-->
-<!--            transition: background 0.3s ease, transform 0.2s ease;-->
-<!--        }-->
-
-<!--        .admin-btn:hover {-->
-<!--            background: #312e81;-->
-<!--            transform: scale(1.05);-->
-<!--        }-->
-
-<!--        body {-->
-<!--            height: 100vh;-->
-<!--            background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);-->
-<!--            color: white;-->
-<!--            display: flex;-->
-<!--            justify-content: center;-->
-<!--            align-items: center;-->
-<!--        }-->
-
-<!--        .hero {-->
-<!--            width: 100%;-->
-<!--            max-width: 1200px;-->
-<!--            text-align: center;-->
-<!--            padding: 20px;-->
-<!--        }-->
-
-<!--        h1 {-->
-<!--            font-size: 3.2rem;-->
-<!--            margin-bottom: 10px;-->
-<!--        }-->
-
-<!--        h3 {-->
-<!--            font-weight: 300;-->
-<!--            margin-bottom: 30px;-->
-<!--            opacity: 0.9;-->
-<!--        }-->
-
-<!--        .register-btn {-->
-<!--            display: inline-block;-->
-<!--            margin-bottom: 40px;-->
-<!--            padding: 14px 36px;-->
-<!--            font-size: 18px;-->
-<!--            color: white;-->
-<!--            background: linear-gradient(90deg, #22c55e, #16a34a);-->
-<!--            border-radius: 30px;-->
-<!--            text-decoration: none;-->
-<!--            box-shadow: 0 0 20px rgba(34,197,94,0.6);-->
-<!--            animation: pulse 2s infinite;-->
-<!--        }-->
-
-<!--        .register-btn:hover {-->
-<!--            transform: scale(1.07);-->
-<!--        }-->
-
-<!--        .container {-->
-<!--            display: flex;-->
-<!--            justify-content: center;-->
-<!--            gap: 50px;-->
-<!--        }-->
-
-<!--        .box {-->
-<!--            width: 260px;-->
-<!--            height: 220px;-->
-<!--            background: linear-gradient(135deg, #312e81, #6366f1);-->
-<!--            border-radius: 20px;-->
-<!--            display: flex;-->
-<!--            flex-direction: column;-->
-<!--            justify-content: center;-->
-<!--            align-items: center;-->
-<!--            font-size: 22px;-->
-<!--            cursor: pointer;-->
-<!--            text-decoration: none;-->
-<!--            color: white;-->
-<!--            box-shadow: 0 20px 40px rgba(0,0,0,0.35);-->
-<!--            transition: 0.4s ease;-->
-<!--        }-->
-
-<!--        .box:hover {-->
-<!--            transform: translateY(-12px) scale(1.05);-->
-<!--        }-->
-
-<!--        .icon {-->
-<!--            font-size: 48px;-->
-<!--            margin-bottom: 12px;-->
-<!--        }-->
-
-<!--        @keyframes pulse {-->
-<!--            0% { box-shadow: 0 0 15px rgba(34,197,94,0.6); }-->
-<!--            50% { box-shadow: 0 0 30px rgba(34,197,94,0.9); }-->
-<!--            100% { box-shadow: 0 0 15px rgba(34,197,94,0.6); }-->
-<!--        }-->
-
-<!--        /* ===================== */-->
-<!--        /* DESKTOP SUPPORT TEXT */-->
-<!--        /* ===================== */-->
-<!--        .support-text {-->
-<!--            position: fixed;-->
-<!--            bottom: 12px;-->
-<!--            right: 18px;-->
-<!--            font-size: 13px;-->
-<!--            color: rgba(255, 255, 255, 1);-->
-<!--            text-align: middle;-->
-<!--            transition: all 0.3s ease;-->
-<!--        }-->
-
-<!--        .support-text a {-->
-<!--            color: rgba(30, 136, 229, 0.6);-->
-<!--            text-decoration: none;-->
-<!--            font-weight: 500;-->
-<!--        }-->
-
-<!--        .support-text:hover a {-->
-<!--            color: #1e88e5;-->
-<!--            text-decoration: underline;-->
-<!--        }-->
-
-<!--        /* ===================== */-->
-<!--        /* MOBILE VIEW FIXES */-->
-<!--        /* ===================== */-->
-<!--        @media (max-width: 768px) {-->
-
-<!--            body {-->
-<!--                height: auto;-->
-<!--                padding: 30px 0;-->
-<!--            }-->
-
-<!--            h1 {-->
-<!--                font-size: 2.5rem;-->
-<!--                line-height: 1.5;-->
-<!--            }-->
-
-<!--            h3 {-->
-<!--                font-size: 1rem;-->
-<!--                margin-bottom: 25px;-->
-<!--            }-->
-
-<!--            .register-btn {-->
-<!--                font-size: 16px;-->
-<!--                padding: 12px 30px;-->
-<!--                margin-bottom: 30px;-->
-<!--            }-->
-
-<!--            .container {-->
-<!--                flex-direction: column;-->
-<!--                gap: 22px;-->
-<!--                align-items: center;-->
-<!--            }-->
-
-<!--            .box {-->
-<!--                width: 90%;-->
-<!--                height: 180px;-->
-<!--                font-size: 20px;-->
-<!--            }-->
-
-<!--            .icon {-->
-<!--                font-size: 42px;-->
-<!--            }-->
-
-<!--            /* Move support text to center BELOW content */-->
-<!--            .support-text {-->
-<!--                position: static;-->
-<!--                margin-top: 30px;-->
-<!--                text-align: center;-->
-<!--                font-size: 12.5px;-->
-<!--            }-->
-
-<!--            @media (max-width: 600px) {-->
-<!--                .admin-btn {-->
-<!--                    font-size: 12px;-->
-<!--                    padding: 6px 12px;-->
-<!--                    top: 15px;-->
-<!--                    right: 15px;-->
-<!--                }-->
-<!--            }-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-
-<!--<body>-->
-
-<!--<div class="hero">-->
-<!--    <h1>Welcome to the E-Flair TechFest 2k26</h1>-->
-<!--    <h3>Organized by the Department of ECE and EEE</h3>-->
-<!--    <h3>Centurion University of Technology and Management, Paralakhemundi Campus</h3>-->
-
-<!--    <a href="/api/registrations/form" class="register-btn">Register Now</a>-->
-<!--    <a href="/admin/login" class="admin-btn">Admin Login</a>-->
-
-<!--    <div class="container">-->
-<!--        <a href="/technical" class="box">-->
-<!--            <div class="icon">🧠</div>-->
-<!--            Technical Events-->
-<!--        </a>-->
-
-<!--        <a href="/nontechnical" class="box">-->
-<!--            <div class="icon">🎭</div>-->
-<!--            Non-Technical Events-->
-<!--        </a>-->
-<!--    </div>-->
-
-<!--    <div class="support-text">-->
-<!--        <p><strong>Imagined &amp; built by Beda</strong></p>-->
-<!--        <p>Any problem with this site? Give me a bell 🔔 ↲</p>-->
-<!--        <p>-->
-<!--            <a href="mailto:yourmail@example.com">230101150001@centurionuniv.edu.in</a>-->
-<!--        </p>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--</body>-->
-<!--</html>-->
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>E-Flair TechFest 2k26</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --cyan-400: #22d3ee;
+            --blue-600: #2563eb;
+            --slate-900: #0f172a;
+            --glass: rgba(15, 23, 42, 0.8);
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-body{
-min-height:100vh;
-background:
-radial-gradient(circle at top right,#1e1b4b,#020617),
-radial-gradient(circle at bottom left,#312e81,#020617);
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow-x:hidden;
-}
+        body {
+            background-color: #020617;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-/* PARTICLES */
+        /* --- BACKGROUND EFFECTS --- */
+        .bg-gradient-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(30, 58, 138, 0.2) 0%, rgba(15, 23, 42, 0.8) 50%, #020617 100%);
+            z-index: -1;
+        }
 
-.particles{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:-1;
-}
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -2;
+        }
 
-.particles span{
-position:absolute;
-width:4px;
-height:4px;
-background:#00f2fe;
-border-radius:50%;
-animation:floatParticles linear infinite;
-}
+        .admin-btn {
+            position: fixed; /* Changed from absolute to fixed */
+            bottom: 20px;    /* Moved to bottom */
+            left: 20px;      /* Moved to left */
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 12px;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+            z-index: 100;
+            opacity: 0.6; /* Keeps it subtle */
+        }
 
-@keyframes floatParticles{
-from{transform:translateY(100vh) scale(.5);opacity:0;}
-10%{opacity:1;}
-to{transform:translateY(-10vh) scale(1);opacity:0;}
-}
+        .admin-btn:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-/* HERO */
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 100px 20px 60px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-.hero{
-width:100%;
-max-width:2000px;
-text-align:center;
-padding:20px;
-animation:fadeUp 1s ease;
-}
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            margin-bottom: 2rem;
+        }
 
-h1{
-font-size:3.4rem;
-background:linear-gradient(to right,#fff,#00f2fe);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-margin-bottom:10px;
-}
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--cyan-400);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
 
-h3{
-font-weight:300;
-opacity:.85;
-margin-bottom:25px;
-}
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
 
-/* REGISTER BUTTON */
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
 
-.register-btn{
-display:inline-block;
-padding:14px 36px;
-font-size:18px;
-border-radius:30px;
-text-decoration:none;
-color:white;
-background:linear-gradient(90deg,#8b5cf6,#ec4899);
-box-shadow:0 0 25px rgba(236,72,153,.6);
-transition:.4s;
-margin-bottom:40px;
-}
+        .text-gradient {
+            background: linear-gradient(to right, #22d3ee, #3b82f6, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.register-btn:hover{
-transform:translateY(-3px);
-box-shadow:0 0 35px rgba(236,72,153,.9);
-}
+        h3 {
+            color: #94a3b8;
+            font-weight: 300;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 700px;
+            margin: 0 auto 0.5rem;
+            margin-bottom: 30px;
+        }
+        .countdown-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--cyan-400); /* Matches your Techfest blue */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px; /* The specific 5px space you requested */
+            text-align: center;
+            opacity: 0.9;
+            animation: fadeUp 1s ease; /* Matches your hero animation */
+        }
+<!--        .timer-container {-->
+<!--            margin-top: 0 !important;-->
+<!--            margin-bottom: 3rem;-->
+<!--        }-->
 
-/* ADMIN BUTTON */
+        /* --- COUNTDOWN --- */
+        .timer-container {
+            margin-top: 0 !important;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 3rem 0;
+        }
 
-.admin-btn{
-position:absolute;
-top:20px;
-right:20px;
-padding:8px 18px;
-border-radius:8px;
-background:rgba(255,255,255,.1);
-border:1px solid rgba(255,255,255,.2);
-color:white;
-text-decoration:none;
-font-size:14px;
-transition:.3s;
-}
+        .timer-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.admin-btn:hover{
-background:#00f2fe;
-color:#020617;
-box-shadow:0 0 20px rgba(0,242,254,.6);
-}
+        .timer-box {
+            width: 80px;
+            height: 80px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.1);
+        }
 
-/* EVENT CARDS */
+        .timer-box::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
 
-.container{
-display:flex;
-justify-content:center;
-gap:50px;
-flex-wrap:wrap;
-}
+        .timer-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
 
-.box{
-width:260px;
-height:200px;
-border-radius:20px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,.1);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-font-size:22px;
-text-decoration:none;
-color:white;
-transition:.4s;
-box-shadow:0 15px 35px rgba(0,0,0,.4);
-}
+        /* --- LIVE STATUS STYLING (WITH INTENSE GLOW) --- */
+        .live-status {
+            display: none; /* Hidden by default */
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin: 2rem 0;
+            animation: fadeInGlow 1.5s ease-out forwards;
+        }
 
-.box:hover{
-transform:translateY(-10px) scale(1.05);
-box-shadow:0 0 30px rgba(0,242,254,.5);
-}
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 30px;
+            background: rgba(34, 211, 238, 0.05); /* Slight dark blue tint */
+            border: 2px solid var(--cyan-400); /* The solid blue line */
+            border-radius: 50px;
 
-.icon{
-font-size:48px;
-margin-bottom:10px;
-}
+            /* --- NEW INTENSE GLOW EFFECTS --- */
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Makes text glow white */
+
+            /* Outer Blue Glow (Shadow) */
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.6),
+                        inset 0 0 10px rgba(34, 211, 238, 0.3);
+
+            /* This animation makes the border "breath" with light */
+            animation: borderGlowPulse 2s infinite ease-in-out;
+        }
+
+        .live-dot {
+            width: 12px;
+            height: 12px;
+            background: #ff0055;
+            border-radius: 50%;
+            /* Intense red glow for the dot */
+            box-shadow: 0 0 15px #ff0055, 0 0 30px #ff0055;
+            animation: livePulse 1s infinite;
+        }
+
+        /* --- NEW ANIMATION FOR THE BLUE BORDER GLOW --- */
+        @keyframes borderGlowPulse {
+            0% {
+                box-shadow: 0 0 15px rgba(34, 211, 238, 0.5), inset 0 0 5px rgba(34, 211, 238, 0.2);
+            }
+            50% {
+                /* Max glow intensity */
+                box-shadow: 0 0 30px rgba(34, 211, 238, 0.9), inset 0 0 15px rgba(34, 211, 238, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(34, 211, 238, 0.5), inset 0 0 5px rgba(34, 211, 238, 0.2);
+            }
+        }
+
+        @keyframes livePulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInGlow {
+            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        /* --- BUTTON --- */
+        .register-btn {
+            position: relative;
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(to right, #0891b2, #2563eb);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: 0.3s ease;
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.3);
+        }
+
+        .register-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(6, 182, 212, 0.5);
+        }
+
+        /* --- CARDS --- */
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 60px 20px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            position: relative;
+            width: 350px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 24px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            transition: 0.4s;
+            overflow: hidden;
+        }
+
+        .box::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, var(--cyan-400), var(--blue-600));
+            opacity: 0;
+            transition: 0.4s;
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        .box:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan-400);
+        }
+
+        .box:hover::before {
+            opacity: 0.2;
+        }
+
+        .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .box h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .box p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .explore-tag {
+            margin-top: 20px;
+            color: var(--cyan-400);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
 
         /* ===================== */
         /* DESKTOP SUPPORT TEXT */
@@ -410,168 +355,394 @@ margin-bottom:10px;
             bottom: 12px;
             right: 18px;
             font-size: 13px;
-            color: rgba(255, 255, 255, 1);
-            text-align: middle;
+            color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+            text-align: middle; /* Changed from 'middle' to 'right' for better alignment */
             transition: all 0.3s ease;
+            z-index: 1000;
+            line-height: 1.5;
+        }
+
+        .support-text strong {
+            color: var(--cyan-400); /* Makes your name pop in Techfest blue */
+            display: block;
+            margin-bottom: 2px;
         }
 
         .support-text a {
-            color: rgba(30, 136, 229, 0.6);
+            color: rgba(30, 136, 229, 0.8);
             text-decoration: none;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .support-text:hover {
+            color: rgba(255, 255, 255, 1);
         }
 
         .support-text:hover a {
-            color: #1e88e5;
+            color: #00f2fe; /* Glowing cyan on hover */
             text-decoration: underline;
         }
-
-<!--/* SUPPORT TEXT */-->
-
-<!--.support-text{-->
-<!--margin-top:40px;-->
-<!--font-size:13px;-->
-<!--opacity:.8;-->
-<!--}-->
-
-<!--.support-text a{-->
-<!--color:#38bdf8;-->
-<!--text-decoration:none;-->
-<!--}-->
-
-<!--.support-text a:hover{-->
-<!--text-decoration:underline;-->
-<!--}-->
-
-/* ANIMATIONS */
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(30px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-        /* ===================== */
-        /* MOBILE VIEW FIXES */
-        /* ===================== */
         @media (max-width: 768px) {
-
-            body {
-                height: auto;
-                padding: 20px 0;
-            }
-
-            h1 {
-                font-size: 3.0rem;
-                line-height: 1.5;
-            }
-
-            h3 {
-                font-size: 1rem;
-                margin-bottom: 25px;
-            }
-
-            .register-btn {
-                font-size: 16px;
-                padding: 12px 30px;
-                margin-bottom: 30px;
-            }
-
-            .container {
-                flex-direction: column;
-                gap: 22px;
-                align-items: center;
-            }
-
-            .box {
-                width: 90%;
-                height: 180px;
-                font-size: 20px;
-            }
-
-            .icon {
-                font-size: 42px;
-            }
-
-            /* Move support text to center BELOW content */
             .support-text {
-                position: static;
-                margin-top: 30px;
+                position: relative;
+                /* Force center alignment */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 text-align: center;
-                font-size: 12.5px;
+
+                /* Spacing */
+                margin: 40px 0 20px 0;
+                width: 100%;
+                padding: 0;
+                left: 0;
+                right: 0;
+            }
+
+            .support-text p,
+            .support-text a,
+            .support-text strong {
+                width: 100%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+
+            .support-text a {
+                word-break: break-word;
+                padding: 0 10px; /* Prevents text from touching screen edges */
             }
         }
-<!--/* MOBILE */-->
 
-<!--@media(max-width:768px){-->
+        /* NAVBAR STYLES */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(15, 23, 42, 0.6); /* Semi-transparent */
+            backdrop-filter: blur(12px); /* The Glassmorphism effect */
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
 
-<!--h1{-->
-<!--font-size:2.4rem;-->
-<!--}-->
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-<!--.container{-->
-<!--flex-direction:column;-->
-<!--align-items:center;-->
-<!--}-->
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #00f2fe; /* Cyan color from your image */
+        }
+        .logo {
+            cursor: pointer;
+        }
 
-<!--.box{-->
-<!--width:90%;-->
-<!--height:180px;-->
-<!--}-->
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #00f2fe, #0061ff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 5px;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .logo:hover .logo-icon {
+            transform: rotate(180deg);
+        }
 
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
 
-</style>
+        .nav-links a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #00f2fe;
+        }
+
+        .nav-reg-btn {
+            background: linear-gradient(90deg, #00f2fe, #0061ff) !important;
+            color: white !important;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .nav-reg-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+        }
+
+        /* MOBILE FIX FOR NAVBAR */
+        @media (max-width: 768px) {
+            .nav-links a:not(.nav-reg-btn) {
+                display: none; /* Hides text links on mobile to prevent crowding */
+            }
+        }
+        .category-header {
+            text-align: center;
+            margin-top: 80px; /* Space from the countdown/hero section */
+            margin-bottom: 5px; /* Space before the cards */
+            padding: 0 20px;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .category-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive sizing */
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .category-header p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #94a3b8; /* Slate gray color to match the tech theme */
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Fix for mobile spacing */
+        @media (max-width: 768px) {
+            .category-header {
+                margin-top: 50px;
+            }
+            .category-header h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+    </style>
 </head>
-
 <body>
 
-<div class="particles">
-    <span style="left:10%;animation-duration:18s;"></span>
-    <span style="left:20%;animation-duration:22s;"></span>
-    <span style="left:30%;animation-duration:16s;"></span>
-    <span style="left:40%;animation-duration:20s;"></span>
-    <span style="left:50%;animation-duration:18s;"></span>
-    <span style="left:60%;animation-duration:25s;"></span>
-    <span style="left:70%;animation-duration:19s;"></span>
-    <span style="left:80%;animation-duration:23s;"></span>
-    <span style="left:90%;animation-duration:21s;"></span>
-</div>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                    <rect x="9" y="9" width="6" height="6"></rect>
+                    <line x1="9" y1="1" x2="9" y2="4"></line>
+                    <line x1="15" y1="1" x2="15" y2="4"></line>
+                    <line x1="9" y1="20" x2="9" y2="23"></line>
+                    <line x1="15" y1="20" x2="15" y2="23"></line>
+                    <line x1="20" y1="9" x2="23" y2="9"></line>
+                    <line x1="20" y1="15" x2="23" y2="15"></line>
+                    <line x1="1" y1="9" x2="4" y2="9"></line>
+                    <line x1="1" y1="15" x2="4" y2="15"></line>
+                </svg>
+            </div>
+            <span>E-Flair</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/technical">Technical</a>
+            <a href="/nontechnical">Non-Technical</a>
+            <a href="/api/registrations/form" class="nav-reg-btn">Register Now</a>
+        </div>
+    </div>
+</nav>
+
+<canvas id="particleCanvas"></canvas>
+<div class="bg-gradient-overlay"></div>
+
+<!--<a href="/admin/login" class="admin-btn">Admin Login</a>-->
 
 <div class="hero">
+    <div class="badge">
+        <span class="badge-dot"></span>
+        <span style="font-size: 12px; letter-spacing: 1px; color: #cbd5e1;">Department TECH FEST 2k26</span>
+    </div>
 
-    <h1>Welcome to E-Flair TechFest 2K26</h1>
+    <h1>
+        <span class="text-gradient">E-Flair</span><br>
+        <span style="color: white;">Tech Fest</span>
+    </h1>
 
     <h3>Organized by the Department of ECE & EEE</h3>
     <h3>Centurion University of Technology and Management, Paralakhemundi Campus</h3>
 
-    <a href="/api/registrations/form" class="register-btn">Register Now</a>
-
-    <div class="container">
-
-        <a href="/technical" class="box">
-            <div class="icon">⚡</div>
-            Technical Events
-        </a>
-
-        <a href="/nontechnical" class="box">
-            <div class="icon">🎨</div>
-            Non-Technical Events
-        </a>
-
+    <div id="countdown-section">
+        <div class="countdown-label" id="timer-msg">Coming in :</div>
+        <div class="timer-container" id="timer-display">
+            <div class="timer-block">
+                <div class="timer-box" id="days">00</div>
+                <div class="timer-label">Days</div>
+            </div>
+            <div class="timer-block">
+                <div class="timer-box" id="hours">00</div>
+                <div class="timer-label">Hours</div>
+            </div>
+            <div class="timer-block">
+                <div class="timer-box" id="minutes">00</div>
+                <div class="timer-label">Min</div>
+            </div>
+            <div class="timer-block">
+                <div class="timer-box" id="seconds">00</div>
+                <div class="timer-label">Sec</div>
+            </div>
+        </div>
     </div>
 
+    <div id="live-trigger" class="live-status">
+        <div class="live-badge">
+            <span class="live-dot"></span>
+            EVENT IS LIVE
+        </div>
+    </div>
+
+
+    <a href="/api/registrations/form" class="register-btn">Register Now !</a>
+</div>
+
+<div class="category-header">
+    <h2>Event Categories</h2>
+    <p>Choose your arena. Whether you are a hardcore programmer or a creative thinker, we have something for everyone.</p>
+</div>
+
+<div class="container">
+    <a href="/technical" class="box">
+        <div class="icon-wrapper">⚡</div>
+        <h4>Technical Events</h4>
+        <p>Hackathons, Coding Challenges, Robotics, and Project Expos. Showcase your technical prowess.</p>
+        <div class="explore-tag">Explore Events →</div>
+    </a>
+
+    <a href="/nontechnical" class="box">
+        <div class="icon-wrapper">🎨</div>
+        <h4>Non-Technical Events</h4>
+        <p>Gaming arenas, Reels Challenges, Rangoli, and Treasure Hunts. Bring out your creative side.</p>
+        <div class="explore-tag">Explore Events →</div>
+    </a>
+</div>
+
+<center>
     <div class="support-text">
         <p><strong>Imagined & built by Beda</strong></p>
-        <p>problem with site? Contact ↴</p>
-        <p><a href="mailto:230101150001@centurionuniv.edu.in">230101150001@centurionuniv.edu.in</a></p>
+        <p>Problem with site? Contact ↴</p>
+        <a href="mailto:230101150001@centurionuniv.edu.in">230101150001@centurionuniv.edu.in</a>
     </div>
+</center>
 
-</div>
+<script>
+    // --- COUNTDOWN TIMER LOGIC ---
+    const targetDate = new Date('March 24, 2026 09:45:00').getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            // If the date has passed or is right now
+            if (diff <= 0) {
+                document.getElementById('countdown-section').style.display = 'none';
+                document.getElementById('live-trigger').style.display = 'block';
+                return; // Stop updating
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+        }
+
+        // Run once immediately on load/refresh
+        updateTimer();
+        // Then run every second
+        setInterval(updateTimer, 1000);
+    // --- PARTICLE BACKGROUND (Transplanted from Code 2 style) ---
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function initCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 0.5 - 0.25;
+            this.opacity = Math.random();
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
+        }
+        draw() {
+            ctx.fillStyle = `rgba(34, 211, 238, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function createParticles() {
+        for (let i = 0; i < 100; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', initCanvas);
+    initCanvas();
+    createParticles();
+    animate();
+</script>
 
 </body>
 </html>
