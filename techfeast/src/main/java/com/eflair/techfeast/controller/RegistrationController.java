@@ -74,7 +74,12 @@ public class RegistrationController {
         }
 
         // PAYMENT
-        if ("ONLINE".equalsIgnoreCase(registration.getPaymentMode())) {
+        // Inside saveRegistration method
+        if ("FREE_EVENT".equalsIgnoreCase(registration.getTransactionId())) {
+            registration.setPaymentMode("FREE");
+            registration.setScreenshotUrl("FREE_EVENT");
+        }
+        else if ("ONLINE".equalsIgnoreCase(registration.getPaymentMode())) {
 
             if (screenshot == null || screenshot.isEmpty()) {
                 model.addAttribute("error", "Payment screenshot required");
@@ -120,6 +125,8 @@ public class RegistrationController {
                 newReg.setScreenshotUrl(registration.getScreenshotUrl());
                 newReg.setCashReceiver(registration.getCashReceiver());
                 newReg.setReceiverPhone(registration.getReceiverPhone());
+                // ADD THIS LINE:
+                newReg.setGroupMembers(registration.getGroupMembers());
                 newReg.setEventName(event.trim());
 
                 registration.setTransactionId("CASH");

@@ -464,9 +464,25 @@
     Your spot is reserved for the following Event:
   </p>
 
-  <ul class="event-list">
-    <li class="event-item" th:each="reg : ${registrations}" th:text="${reg.eventName}">
-      Event Name
+<!--  <ul class="event-list">-->
+<!--    <li class="event-item" th:each="reg : ${registrations}" th:text="${reg.eventName}">-->
+<!--      Event Name-->
+<!--    </li>-->
+<!--  </ul>-->
+  <ul class="event-list" style="padding-left: 0;">
+    <li class="event-item" th:each="reg : ${registrations}" style="list-style: none; margin-bottom: 15px;">
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="color: var(--cyan-400); font-size: 0.8rem;">✦</span>
+          <strong th:text="${reg.eventName}" style="color: #e2e8f0; font-size: 1rem;">Event Name</strong>
+        </div>
+
+        <div th:if="${reg.groupMembers != null and !reg.groupMembers.isEmpty()}"
+             style="font-size: 0.85rem; color: var(--cyan-400); margin-left: 22px; margin-top: 2px;">
+          <span style="color: #94a3b8; font-weight: normal;">Team:</span>
+          <span th:text="${reg.groupMembers}">Member 1, Member 2</span>
+        </div>
+      </div>
     </li>
   </ul>
 
