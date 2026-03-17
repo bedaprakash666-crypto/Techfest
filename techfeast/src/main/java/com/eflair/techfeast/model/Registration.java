@@ -44,6 +44,7 @@ public class Registration {
     private String cashReceiver;
     private String receiverPhone;
     private String otherDepartment;
+    private String groupMembers;
 
     // -------- Constructors --------
     public Registration() {
@@ -169,4 +170,7 @@ public class Registration {
     public void setReceiverPhone(String receiverPhone) {
         this.receiverPhone = receiverPhone;
     }
+
+    public String getGroupMembers() { return groupMembers; }
+    public void setGroupMembers(String groupMembers) { this.groupMembers = groupMembers; }
 }
