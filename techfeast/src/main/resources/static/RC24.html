@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC24 — The Ultimate Gaming Challenge | TechFeast</title>
+
+    <style>
+    :root {
+      --primary-neon: #00f2ff; /* Gaming Cyan */
+      --secondary-neon: #0891b2;
+      --accent-pink: #ec4899;
+      --glass-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at top right, #083344, #020617),
+                  radial-gradient(circle at bottom left, #164e63, #020617);
+      background-attachment: fixed;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Floating Gaming Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .particles span {
+      position: absolute;
+      display: block;
+      width: 4px;
+      height: 4px;
+      background: rgba(0, 242, 255, 0.6);
+      border-radius: 50%;
+      animation: floatParticles linear infinite;
+    }
+
+    @keyframes floatParticles {
+      from { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      10% { opacity: 1; }
+      to { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    .home-box {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      color: var(--primary-neon);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .home-box:hover {
+      background: var(--primary-neon);
+      color: #020617;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+    }
+
+    /* Main Grid Layout */
+    .page-container {
+      max-width: 1300px;
+      margin: 80px auto 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 25px;
+      padding: 20px;
+    }
+
+    .details-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 40px;
+      animation: fadeInLeft 0.8s ease-out;
+    }
+
+    .sidebar-sticky {
+      position: sticky;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      animation: fadeInRight 0.8s ease-out;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-top: 0;
+      background: linear-gradient(to right, #fff, var(--primary-neon));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -2px;
+    }
+
+    .section {
+      margin-top: 25px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-neon);
+    }
+
+    .sidebar-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 25px;
+    }
+
+    .section h3 {
+      margin: 0 0 10px 0;
+      color: var(--primary-neon);
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .section p, .section ul {
+      line-height: 1.7;
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    .highlight {
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px dashed var(--primary-neon);
+      padding: 15px;
+      border-radius: 8px;
+      color: #fff;
+    }
+
+    .register-btn {
+      display: block;
+      padding: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #0891b2, #00f2ff);
+      color: #020617;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: 0.4s;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0, 242, 255, 0.2);
+    }
+
+    .register-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
+    }
+
+    .poster-box img {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0 !important;
+      font-size: 0.9rem;
+    }
+
+    .contact-list li {
+      margin-bottom: 8px;
+      color: #e2e8f0;
+    }
+
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+
+    @media(max-width:1000px){
+      .page-container { grid-template-columns: 1fr; margin-top: 80px; padding: 12px; }
+      .details-card { padding: 25px 20px; }
+      .sidebar-sticky { position: static; }
+      h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="particles">
+    <span style="left:10%; animation-duration:15s;"></span>
+    <span style="left:30%; animation-duration:20s;"></span>
+    <span style="left:50%; animation-duration:12s;"></span>
+    <span style="left:70%; animation-duration:25s;"></span>
+    <span style="left:90%; animation-duration:18s;"></span>
+</div>
+
+<a href="/" class="home-box">← Back to Home</a>
+
+<div class="page-container">
+
+    <div class="details-card">
+        <h1>RC24 — Gaming Core</h1>
+
+        <div class="section">
+            <h3>About the Event</h3>
+            <p>
+                Step into the digital arena of <strong>RC24</strong>. This high-stakes mobile video gaming event challenges your reflexes, strategy, and technical prowess. Whether you are a casual gamer or a pro, RC24 is the place to prove your skills.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>Rules & Guidelines</h3>
+            <ul>
+                <li>The use of unfair means, hacks, or third-party modifications is strictly prohibited.</li>
+                <li>Participants must follow all instructions provided by the event coordinators.</li>
+                <li>Match time limits will be strictly enforced.</li>
+                <li>In case of disputes, the Judges’ decision will be absolute and final.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Event Format</h3>
+            <p>
+                Participants are required to bring their <strong>own mobile devices</strong> with the game pre-installed and updated. Ensure your device is fully charged; charging points will be limited.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>Participation Details</h3>
+            <ul>
+                <li><strong>Format:</strong> Solo Event</li>
+                <li><strong>Eligibility:</strong> Open to all college students across branches.</li>
+                <li><strong>Requirement:</strong> Valid College ID Card is mandatory for entry.</li>
+                <li><strong>Environment:</strong> Respectful gaming conduct is required at all times.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Student Coordinators</h3>
+            <ul class="contact-list">
+                <li><strong>Mukul Kumar :</strong> 6207836989</li>
+                <li><strong>Rahul Kumar :</strong> 8825303312</li>
+                <li><strong>Gama Shankar :</strong> 7700848356</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="sidebar-sticky">
+        <div class="poster-box">
+            <img src="/images/RC24.jpeg" alt="RC24 Poster">
+        </div>
+
+        <div class="sidebar-card">
+            <div class="section" style="margin-top: 0;">
+                <h3>Event Timing & Fee</h3>
+                <div class="highlight">
+                    📅 25th March 2026 (3PM-4PM)<br>
+                    💰 Registration Fee: <strong>₹100 / Head</strong>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Prize Pool</h3>
+                <div class="highlight" style="border-color: #fbbf24;">
+                    🏆 <strong>Winner - Up to ₹2,000 + Certificate</strong>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Faculty Coordinator</h3>
+                <ul class="contact-list">
+                    <li><strong>Dr. Soumyadeep Maiti</strong></li>
+                </ul>
+            </div>
+
+            <a href="/register?eventName=RC24" class="register-btn" style="margin-top: 20px;">
+                Secure your Spot
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

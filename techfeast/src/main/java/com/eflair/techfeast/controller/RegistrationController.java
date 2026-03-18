@@ -49,7 +49,8 @@ public class RegistrationController {
                 "Treasure Hunt",
                 "Reels Challenge",
                 "Chess Championship",
-                "Tug of War"
+                "Tug of War",
+                "RC24"
 
         );
 
