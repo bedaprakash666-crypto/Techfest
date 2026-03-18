@@ -156,14 +156,67 @@
                 font-size: 22px;
             }
         }
+        @media (max-width: 600px) {
+            header, .header-container { /* Adjust class name to match your header wrapper */
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
 
     </style>
 </head>
 
 <body>
 
-<a href="/" class="home-box">Home</a>
-<a href="/admin/logout" class="logout-btn">Logout</a>
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; width: 100%; box-sizing: border-box; background: #020617;">
+
+    <div style="display: flex; gap: 15px;">
+        <a href="/" style="
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;">
+            Home
+        </a>
+
+        <a href="/admin/dashboard" style="
+            display: inline-block;
+            background: #8b5cf6;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;">
+            Admin Dashboard
+        </a>
+    </div>
+
+    <a href="/admin/logout" style="
+        display: inline-block;
+        background: #ef4444;
+        color: white;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        white-space: nowrap;">
+        Logout
+    </a>
+</div>
 
 
 <h1>All Event Registrations</h1>
@@ -179,6 +232,7 @@
             <option>Tech Quiz</option>
             <option>Hackathon</option>
             <option>Coding Competition</option>
+            <option>Coding Level 1.0</option>
             <option>Hardware Redesign</option>
             <option>Ideathon</option>
             <option>Virtual Campus Drive</option>
