@@ -170,14 +170,16 @@ public class AdminController {
         Row header = sheet.createRow(0);
 
         String[] cols = {
-                "ID","Name","Roll","Dept","Year",
-                "Phone","Email","Event","Payment Mode","Screenshot URL"
+                "ID", "Name", "Roll", "Dept", "Year",
+                "Phone", "Email", "Event", "Group Members", // 🚀 Added Group Members
+                "Payment Mode", "Transaction ID", "Screenshot URL" // 🚀 Added Transaction ID
         };
 
         for (int i = 0; i < cols.length; i++) {
             header.createCell(i).setCellValue(cols[i]);
         }
 
+        // Data
         // Data
         int rowNum = 1;
         for (Registration r : list) {
@@ -191,11 +193,22 @@ public class AdminController {
             row.createCell(5).setCellValue(r.getPhone());
             row.createCell(6).setCellValue(r.getEmail());
             row.createCell(7).setCellValue(r.getEventName());
-            row.createCell(8).setCellValue(r.getPaymentMode());
-            row.createCell(9).setCellValue(r.getScreenshotUrl());
+
+            // 🚀 8. Group Members
+            row.createCell(8).setCellValue(r.getGroupMembers() != null ? r.getGroupMembers() : "—");
+
+            // 🚀 9. Payment Mode (Will now correctly show "FREE", "CASH", or "ONLINE")
+            row.createCell(9).setCellValue(r.getPaymentMode());
+
+            // 🚀 10. Transaction ID
+            row.createCell(10).setCellValue(r.getTransactionId() != null ? r.getTransactionId() : "—");
+
+            // 🚀 11. Screenshot URL
+            row.createCell(11).setCellValue(r.getScreenshotUrl());
         }
 
-        for (int i=0;i<cols.length;i++) sheet.autoSizeColumn(i);
+//        for (int i=0;i<cols.length;i++) sheet.autoSizeColumn(i);
+        for (int i = 0; i < cols.length; i++) sheet.autoSizeColumn(i);
 
         response.setContentType(
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");

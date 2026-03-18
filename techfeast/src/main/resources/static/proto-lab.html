@@ -3,167 +3,318 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proto Lab | TechFeast</title>
+  <title>Hardware Redesign — Precision & Innovation | TechFeast</title>
 
   <style>
+    :root {
+      --primary-neon: #818cf8; /* Indigo Neon */
+      --secondary-neon: #6366f1;
+      --accent-pink: #ec4899;
+      --glass-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(255, 255, 255, 0.1);
+    }
+
     body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #0f172a, #020617);
-        min-height: 100vh;
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at top right, #1e1b4b, #020617),
+                  radial-gradient(circle at bottom left, #312e81, #020617);
+      background-attachment: fixed;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* MAIN WHITE CONTAINER */
+    /* Floating Tech Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .particles span {
+      position: absolute;
+      display: block;
+      width: 4px;
+      height: 4px;
+      background: rgba(99, 102, 241, 0.6);
+      border-radius: 50%;
+      animation: floatParticles linear infinite;
+    }
+
+    @keyframes floatParticles {
+      from { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      10% { opacity: 1; }
+      to { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    .home-box {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      color: var(--primary-neon);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .home-box:hover {
+      background: var(--primary-neon);
+      color: #020617;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    }
+
+    /* Main Grid Layout */
     .page-container {
-        max-width: 1150px;
-        margin: 100px auto 60px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        padding: 50px 50px;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 0 50px rgba(0,0,0,0.4);
+      max-width: 1300px;
+      margin: 80px auto 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 25px;
+      padding: 20px;
     }
 
-    /* LEFT DETAILS CARD */
     .details-card {
-        background: #f8fafc;
-        border-radius: 16px;
-        padding: 40px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.08);
-        animation: fadeInLeft 1s ease;
-        color: #1e293b;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 40px;
+      animation: fadeInLeft 0.8s ease-out;
     }
 
-    .details-card h1 {
-        font-size: 36px;
-        margin-bottom: 20px;
-        color: #312e81;
+    .sidebar-sticky {
+      position: sticky;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      animation: fadeInRight 0.8s ease-out;
     }
 
-    .details-card p {
-        font-size: 17px;
-        line-height: 1.7;
-        color: #475569;
-        margin-bottom: 30px;
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-top: 0;
+      background: linear-gradient(to right, #fff, var(--primary-neon));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
     }
 
-    /* REGISTER BUTTON */
+    .section {
+      margin-top: 25px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border-left: 4px solid var(--secondary-neon);
+    }
+
+    .sidebar-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 25px;
+    }
+
+    .section h3 {
+      margin: 0 0 10px 0;
+      color: var(--primary-neon);
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .section p, .section ul {
+      line-height: 1.7;
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    .highlight {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px dashed var(--primary-neon);
+      padding: 15px;
+      border-radius: 8px;
+      color: #fff;
+    }
+
     .register-btn {
-        display: inline-block;
-        padding: 14px 40px;
-        font-size: 18px;
-        background: linear-gradient(90deg, #ec4899, #8b5cf6);
-        color: white;
-        border-radius: 30px;
-        text-decoration: none;
-        animation: glowPulse 2.2s infinite;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      padding: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #6366f1, #a855f7);
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: 0.4s;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
     }
 
     .register-btn:hover {
-        transform: scale(1.07);
-        box-shadow: 0 0 25px rgba(236,72,153,0.9);
-    }
-
-    /* RIGHT POSTER SECTION */
-    .poster-box {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: fadeInRight 1s ease;
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
     }
 
     .poster-box img {
-        width: 100%;
-        max-width: 380px;
-        border-radius: 18px;
-        box-shadow: 0 0 30px rgba(0,0,0,0.4);
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
     }
 
-    /* HOME BUTTON */
-    .home-box {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        padding: 8px 18px;
-        background: #2563eb;
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 600;
+    .contact-list {
+      list-style: none;
+      padding: 0 !important;
+      font-size: 0.9rem;
     }
 
-    /* ANIMATIONS */
-    @keyframes fadeInLeft {
-        from { opacity: 0; transform: translateX(-40px); }
-        to { opacity: 1; transform: translateX(0); }
+    .contact-list li {
+      margin-bottom: 8px;
+      color: #e2e8f0;
     }
 
-    @keyframes fadeInRight {
-        from { opacity: 0; transform: translateX(40px); }
-        to { opacity: 1; transform: translateX(0); }
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+
+    @media(max-width:1000px){
+      .page-container { grid-template-columns: 1fr; margin: 70px 0; padding: 0 12px; gap: 16px; }
+      .details-card { padding: 22px 18px; border-radius: 18px; }
+      .sidebar-sticky { position: static; gap: 16px; }
+      .poster-box { order: -1; }
+      h1 { font-size: 2rem; }
+      .register-btn { padding: 16px; font-size: 17px; }
     }
-
-    @keyframes glowPulse {
-        0% { box-shadow: 0 0 15px rgba(236,72,153,0.5); }
-        50% { box-shadow: 0 0 30px rgba(139,92,246,0.9); }
-        100% { box-shadow: 0 0 15px rgba(236,72,153,0.5); }
-    }
-
-    /* MOBILE VIEW */
-    @media (max-width: 768px) {
-        .page-container {
-            grid-template-columns: 1fr;
-            text-align: center;
-        }
-
-        .poster-box {
-            margin-top: 30px;
-        }
-
-        .details-card h1 {
-            text-align: center;
-        }
-
-        .register-btn {
-            display: block;
-            margin: 0 auto;
-        }
-    }
-
   </style>
 </head>
 
 <body>
+<div class="particles">
+  <span style="left:15%; animation-duration:18s;"></span>
+  <span style="left:35%; animation-duration:22s;"></span>
+  <span style="left:55%; animation-duration:15s;"></span>
+  <span style="left:75%; animation-duration:20s;"></span>
+  <span style="left:95%; animation-duration:17s;"></span>
+</div>
 
-<a href="/" class="home-box">Home</a>
+<a href="/" class="home-box">← Back to Home</a>
 
 <div class="page-container">
 
-  <!-- LEFT: EVENT DETAILS -->
   <div class="details-card">
-    <h1>Proto Lab</h1>
+    <h1>Hardware Redesign</h1>
 
-    <p>
-      Proto Lab encourages participants to design and demonstrate
-      working prototypes based on innovative ideas.
-      This event focuses on practical implementation, creativity,
-      and technical feasibility of the proposed solution.
-    </p>
+    <div class="section">
+      <h3>About the Event</h3>
+      <p>
+        Hardware Redesign is a hands-on technical event that challenges participants to
+        demonstrate their practical knowledge and precision in basic Electrical and Electronics experiments.
+      </p>
 
-    <a href="/register?eventName=Proto Lab" class="register-btn">
-      Register Now
-    </a>
+      <p>
+        The event will be conducted across three laboratories: <strong>BEE Lab</strong>,
+        <strong>EDS Lab</strong>, <strong>ECE Lab-3</strong> and <strong>Electrical Machine Lab</strong>.
+        Participants will perform fundamental experiments such as rectifier circuits,
+        bridge rectifiers, and other basic practical setups.
+      </p>
+
+      <p>
+        Participants who complete experiments with maximum accuracy within the given time
+        will be declared winners.
+      </p>
+    </div>
+
+    <div class="section">
+      <h3>Rules & Guidelines</h3>
+      <ul>
+<!--        <li>Experiments include Rectifier Circuits, Bridge Rectifiers, and other practical setups.</li>-->
+        <li>Use of unfair means or external help is strictly prohibited.</li>
+        <li>Each task must be completed within the specified time limit.</li>
+        <li>Safety protocols in the lab must be followed at all times.</li>
+        <li>Judges’ decision based on accuracy and speed will be final.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Categories</h3>
+      <ul>
+        <li>Electrical Circuits</li>
+        <li>Electronics Circuits</li>
+        <li><strong>EEE Special:</strong> DC Motor Connections</li>
+        <li><strong>EEE Special:</strong> Transformers Tests</li>
+        <li><strong>ECE Special:</strong> Analogue and Digital Experiments</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Participation Specs</h3>
+      <ul>
+        <li>Maximum 2 members per team.</li>
+        <li>Open to all Engineering students.</li>
+        <li>Participants must carry a valid College ID card.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Student Coordinators</h3>
+      <ul class="contact-list">
+        <li><strong>Gama Shankar:</strong> 7700848356</li>
+        <li><strong>Tuntun Kumar:</strong> 9128686760</li>
+        <li><strong>Nitish Kumar Mandal:</strong> 9142112094</li>
+      </ul>
+    </div>
   </div>
 
-  <!-- RIGHT: POSTER -->
-  <div class="poster-box">
-    <img src="/images/protolab.png" alt="Proto Lab Poster">
-  </div>
+  <div class="sidebar-sticky">
+    <div class="poster-box">
+      <img src="/images/Hardware.jpeg" alt="Hardware Redesign Poster">
+    </div>
 
+    <div class="sidebar-card">
+      <div class="section" style="margin-top: 0;">
+        <h3>Event Timing & Fee</h3>
+        <div class="highlight">
+          📅 26th March 2026<br>
+          💰 Registration Fee: <strong>₹50/Head</strong>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Prize Pool</h3>
+        <div class="highlight" style="border-color: #fbbf24;">
+          🏆 <strong>Winner - Up to ₹2,000 + Certificate</strong><br>
+          🏆 <strong>Runner - Up to ₹1,000 + Certificate</strong>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Faculty Coordinators</h3>
+        <ul class="contact-list">
+          <li><strong>Dr. Abinash Rath:</strong> 8763189799</li>
+        </ul>
+      </div>
+
+      <a href="/register?eventName=Hardware Redesign" class="register-btn" style="margin-top: 20px;">
+        Secure your spot
+      </a>
+    </div>
+  </div>
 </div>
 
 </body>
