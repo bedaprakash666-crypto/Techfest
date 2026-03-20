@@ -232,6 +232,16 @@ font-size:2rem;
 
 }
 
+.disabled-btn {
+    background: #475569 !important; /* Steel Gray */
+    border-color: #64748b !important;
+    color: #cbd5e1 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
+    pointer-events: none; /* Prevents clicking */
+}
+
 </style>
 </head>
 
@@ -369,3 +379,30 @@ font-size:2rem;
 
 </body>
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 📝 MASTER CONTROL: Add event names here to freeze them
+    const closedEvents = [
+<!--        "Chess Championship"-->
+    ];
+
+    const registerBtn = document.querySelector(".register-btn");
+
+    if (registerBtn) {
+        // Extract the event name from the button's URL
+        const urlObj = new URL(registerBtn.href, window.location.origin);
+        const eventName = urlObj.searchParams.get('eventName');
+
+        if (closedEvents.includes(eventName)) {
+            // 1. Change the text
+            registerBtn.innerText = "Registration has ended";
+
+            // 2. Apply the "Frozen" look
+            registerBtn.classList.add("disabled-btn");
+
+            // 3. Disable the link
+            registerBtn.href = "javascript:void(0)";
+        }
+    }
+});2
+</script>
