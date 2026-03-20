@@ -13,7 +13,9 @@ import java.util.stream.Collectors;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import jakarta.servlet.ServletOutputStream;
-
+import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 import java.util.List;
@@ -115,8 +117,28 @@ public class AdminController {
 
         model.addAttribute("events", eventNames);
 
-        // 📊 Fetch all registrations
+        // 📊 Group and count registrations by event name
+        // 📊 Group and count registrations by event name
+        // Try changing .getEventName() to .getEvent() if 'eventName' doesn't work
+//        List<Registration> all = null;
+//        Map<String, Long> eventStats = all.stream()
+//                .filter(r -> r != null && r.getEventName() != null)
+//                .collect(Collectors.groupingBy(Registration::getEventName, Collectors.counting()));
+//
+//        model.addAttribute("eventStats", eventStats);
+//        model.addAttribute("eventStats", eventStats);
+        // 1. Fetch the data from the database first!
         List<Registration> all = registrationRepository.findAll();
+
+// 2. Now you can safely create the stream
+        Map<String, Long> eventStats = all.stream()
+                .filter(r -> r != null && r.getEventName() != null)
+                .collect(Collectors.groupingBy(Registration::getEventName, Collectors.counting()));
+
+        model.addAttribute("eventStats", eventStats);
+
+        // 📊 Fetch all registrations
+        all = registrationRepository.findAll();
 
         long total = all.size();
 

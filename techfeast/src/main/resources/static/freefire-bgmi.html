@@ -221,6 +221,15 @@ h1{
 font-size:2rem;
 }
 }
+.disabled-btn {
+    background: #475569 !important; /* Steel Gray */
+    border-color: #64748b !important;
+    color: #cbd5e1 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
+    pointer-events: none; /* Prevents clicking */
+}
 </style>
 </head>
 
@@ -332,8 +341,9 @@ font-size:2rem;
       <div class="section" style="margin-top:0;">
         <h3>Event Timing & Fee</h3>
         <div class="highlight">
-          📅 20th Mar 2k26 (3.30PM-5.30PM) <br><br>
-          💰 Free Fire: <strong>₹300 per Squad</strong><br>
+          📅 23rd Mar 2k26 (BGMI)(9.30AM-5.30PM) <br>
+          📅 24th Mar 2k26 (Freefire)(9.30AM-5.30PM) <br>
+          💰 Free Fire: <strong>₹200 per Squad</strong><br>
           💰 BGMI: <strong>₹200 per Squad</strong>
         </div>
       </div>
@@ -378,3 +388,30 @@ font-size:2rem;
 
 </body>
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 📝 MASTER CONTROL: Add event names here to freeze them
+    const closedEvents = [
+<!--        "Chess Championship"-->
+    ];
+
+    const registerBtn = document.querySelector(".register-btn");
+
+    if (registerBtn) {
+        // Extract the event name from the button's URL
+        const urlObj = new URL(registerBtn.href, window.location.origin);
+        const eventName = urlObj.searchParams.get('eventName');
+
+        if (closedEvents.includes(eventName)) {
+            // 1. Change the text
+            registerBtn.innerText = "Registration has ended";
+
+            // 2. Apply the "Frozen" look
+            registerBtn.classList.add("disabled-btn");
+
+            // 3. Disable the link
+            registerBtn.href = "javascript:void(0)";
+        }
+    }
+});
+</script>
