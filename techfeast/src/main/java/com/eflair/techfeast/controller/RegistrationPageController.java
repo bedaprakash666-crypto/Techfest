@@ -26,7 +26,7 @@ public class RegistrationPageController {
         List<String> technicalEvents = new ArrayList<>(List.of(
 //                "Hackathon",
                 "Project Expo",
-                "Ideathon",
+//                "Ideathon",
                 "IoT / Smart Circuit Design Championship",
                 "Coding Competition",
                 "Technical Poster Presentation",
@@ -40,13 +40,13 @@ public class RegistrationPageController {
 
         List<String> nonTechnicalEvents = new ArrayList<>(Arrays.asList(
                 "Free Fire",
-                "BGMI",
+//                "BGMI",
                 "Rangoli Competition",
-                "Digital Painting Competition",
+//                "Digital Painting Competition",
                 "Treasure Hunt",
                 "Reels Challenge",
-                "Chess Championship",
-                "Tug of War",
+//                "Chess Championship",
+//                "Tug of War",
                 "RC24"
 
         ));
