@@ -337,7 +337,7 @@ font-size:2rem;
       <div class="section" style="margin-top:0;">
         <h3>Event Timing & Fee</h3>
         <div class="highlight">
-          📅 24-25th March 2k26<br>
+          📅 24th March 2k26 (3.30PM-5.30PM)<br>
           💰 Fee: <strong>₹50 per Participant</strong>
         </div>
       </div>
@@ -372,7 +372,7 @@ font-size:2rem;
 document.addEventListener("DOMContentLoaded", function() {
     // 📝 MASTER CONTROL: Add event names here to freeze them
     const closedEvents = [
-<!--        "Chess Championship"-->
+        "Digital Painting Competition"
     ];
 
     const registerBtn = document.querySelector(".register-btn");
@@ -384,7 +384,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (closedEvents.includes(eventName)) {
             // 1. Change the text
-            registerBtn.innerText = "Registration has ended";
+            registerBtn.innerText = "Registration Closed";
 
             // 2. Apply the "Frozen" look
             registerBtn.classList.add("disabled-btn");
