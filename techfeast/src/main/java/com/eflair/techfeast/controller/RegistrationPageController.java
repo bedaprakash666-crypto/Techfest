@@ -43,7 +43,7 @@ public class RegistrationPageController {
 //                "BGMI",
                 "Rangoli Competition",
 //                "Digital Painting Competition",
-                "Treasure Hunt",
+//                "Treasure Hunt",
                 "Reels Challenge",
 //                "Chess Championship",
 //                "Tug of War",
