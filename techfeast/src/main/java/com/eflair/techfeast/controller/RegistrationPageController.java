@@ -45,7 +45,7 @@ public class RegistrationPageController {
                 "Digital Painting Competition",
                 "Treasure Hunt",
                 "Reels Challenge",
-                "Chess Championship",
+//                "Chess Championship",
                 "Tug of War",
                 "RC24"
 
