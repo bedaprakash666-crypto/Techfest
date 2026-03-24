@@ -30,7 +30,7 @@ public class RegistrationController {
     public String showRegistrationForm(@RequestParam(value = "event", required = false) String event,Model model) {
 
         List<String> events = List.of(
-                "Hackathon",
+//                "Hackathon",
                 "Project Expo",
                 "Ideathon",
                 "IoT / Smart Circuit Design Championship",
