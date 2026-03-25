@@ -25,7 +25,7 @@ public class RegistrationPageController {
 
         List<String> technicalEvents = new ArrayList<>(List.of(
 //                "Hackathon",
-                "Project Expo",
+//                "Project Expo",
 //                "Ideathon",
                 "IoT / Smart Circuit Design Championship",
                 "Coding Competition",
