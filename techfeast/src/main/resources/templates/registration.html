@@ -468,27 +468,27 @@ window.addEventListener("DOMContentLoaded", function () {
 
     checkGroupLogic();
 });
-<!--/* ===============================-->
-<!--   GLOBAL REGISTRATION FREEZE-->
-<!--================================ */-->
-<!--window.addEventListener("DOMContentLoaded", function () {-->
-<!--    const submitBtn = document.getElementById("submitBtn");-->
+/* ===============================
+   GLOBAL REGISTRATION FREEZE
+================================ */
+window.addEventListener("DOMContentLoaded", function () {
+    const submitBtn = document.getElementById("submitBtn");
 
-<!--    if (submitBtn) {-->
-<!--        // 1. Change the text to inform the user-->
-<!--        submitBtn.innerText = "Registration has Ended";-->
+    if (submitBtn) {
+        // 1. Change the text to inform the user
+        submitBtn.innerText = "Registration has Closed";
 
-<!--        // 2. Physically disable the button (Browser level lock)-->
-<!--        submitBtn.disabled = true;-->
+        // 2. Physically disable the button (Browser level lock)
+        submitBtn.disabled = true;
 
-<!--        // 3. Apply the frozen look (Grayed out)-->
-<!--        submitBtn.style.background = "#64748b";-->
-<!--        submitBtn.style.cursor = "not-allowed";-->
-<!--        submitBtn.style.boxShadow = "none";-->
-<!--        submitBtn.style.animation = "none";-->
-<!--        submitBtn.style.transform = "none";-->
-<!--    }-->
-<!--});-->
+        // 3. Apply the frozen look (Grayed out)
+        submitBtn.style.background = "#64748b";
+        submitBtn.style.cursor = "not-allowed";
+        submitBtn.style.boxShadow = "none";
+        submitBtn.style.animation = "none";
+        submitBtn.style.transform = "none";
+    }
+});
 </script>
 
 </head>
@@ -678,7 +678,7 @@ window.addEventListener("DOMContentLoaded", function () {
           </label>
 
         <label class="event-card">
-          <input type="checkbox" class="eventCheck techEvent" value="Robo Race" onchange="handleEventCheck()">
+          <input type="checkbox" class="eventCheck techEvent" value="Robo War" onchange="handleEventCheck()">
           <span>Robo War</span>
         </label>
 
